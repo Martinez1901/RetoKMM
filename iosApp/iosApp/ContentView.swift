@@ -1,11 +1,11 @@
 import SwiftUI
-import shared
+import domain
 
 struct ContentView: View {
-	let greet = Greeting().greeting()
+    let test = Test().getData()
 
 	var body: some View {
-		Text(greet)
+		Text(test)
 	}
 }
 

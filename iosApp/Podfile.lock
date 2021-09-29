@@ -1,16 +1,16 @@
 PODS:
-  - shared (1.0)
+  - domain (1.0)
 
 DEPENDENCIES:
-  - shared (from `../shared`)
+  - domain (from `../domain`)
 
 EXTERNAL SOURCES:
-  shared:
-    :path: "../shared"
+  domain:
+    :path: "../domain"
 
 SPEC CHECKSUMS:
-  shared: 29346581d099b8843a69aab157c4d0577c3c8287
+  domain: 8359ba1525e8e877ab653b1ed37e2afe74bc3077
 
-PODFILE CHECKSUM: f282da88f39e69507b0a255187c8a6b644477756
+PODFILE CHECKSUM: 363223f636219966454c4ad026bd71fd1684eea2
 
 COCOAPODS: 1.10.1
