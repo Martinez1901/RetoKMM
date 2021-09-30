@@ -4,6 +4,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 version = "1.0"
@@ -28,8 +29,22 @@ kotlin {
     }
     
     sourceSets {
+        val ktorVersion = "1.6.1"
+        val serializationVersion = "1.2.2"
+        val sqlDelightVersion: String by project
+        val kodeinVersion = "7.1.0"
+
         val commonMain by getting {
             dependencies {
+                // KTOR
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                //SERIALIZATION
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
+                // SQL Delight
+                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                // KODE IN
+                implementation ("org.kodein.di:kodein-di:$kodeinVersion")
                 implementation(project(":domain"))
             }
         }
@@ -39,14 +54,26 @@ kotlin {
                 implementation(kotlin("test-annotations-common"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                // KTOR
+                implementation("io.ktor:ktor-client-android:$ktorVersion")
+                // SQL Delight
+                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
+            }
+        }
         val androidTest by getting {
             dependencies {
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.2")
             }
         }
-        val iosMain by getting
+        val iosMain by getting{
+            dependencies {
+                implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
+            }
+        }
         val iosTest by getting
     }
 }
@@ -60,3 +87,8 @@ android {
     }
 }
 
+sqldelight {
+    database("MarvelDatabase") {
+        packageName = "droal.shareddb"
+    }
+}

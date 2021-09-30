@@ -28,7 +28,14 @@ kotlin {
     }
     
     sourceSets {
-        val commonMain by getting
+        val kodeinVersion = "7.1.0"
+        val commonMain by getting {
+            dependencies {
+                // KODE IN
+                implementation ("org.kodein.di:kodein-di:$kodeinVersion")
+                implementation(project(":shared"))
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
