@@ -6,7 +6,11 @@ class Greeting {
     }
 
     fun greetingHome(): String {
-        return "Home Fragment"
+        return "Comics Fragment"
+    }
+
+    fun greetingCharacter(): String {
+        return "Character Fragment"
     }
 
     fun greetingSearch(): String {
