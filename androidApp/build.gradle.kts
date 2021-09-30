@@ -20,6 +20,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+
+    // Image Loading library Coil
+    implementation("io.coil-kt:coil:1.3.1")
 }
 
 android {
