@@ -2,15 +2,15 @@ PODS:
   - domain (1.0)
 
 DEPENDENCIES:
-  - domain (from `../domain`)
+  - domain (from `../infrastructure/domain`)
 
 EXTERNAL SOURCES:
   domain:
-    :path: "../domain"
+    :path: "../infrastructure/domain"
 
 SPEC CHECKSUMS:
-  domain: 8359ba1525e8e877ab653b1ed37e2afe74bc3077
+  domain: 41964df3522616d52b476d173f3e17c8315d0add
 
-PODFILE CHECKSUM: 363223f636219966454c4ad026bd71fd1684eea2
+PODFILE CHECKSUM: 32a282302655888a6f9e6951a7b2c9d465333d8a
 
 COCOAPODS: 1.10.1
