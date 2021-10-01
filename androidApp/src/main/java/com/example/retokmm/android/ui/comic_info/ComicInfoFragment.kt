@@ -1,4 +1,4 @@
-package com.example.retokmm.android
+package com.example.retokmm.android.ui.comic_info
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -35,8 +35,9 @@ class ComicInfoFragment : Fragment() {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = SectionsPagerAdapter(requireActivity().supportFragmentManager)
-        adapter.addFragment(SearchContentFragment.newInstance("HOME", "HOME"), "HOME")
-        adapter.addFragment(SearchContentFragment.newInstance("Arroz", "Arroz"), "ARROZ")
+        adapter.addFragment(ComicDetailsFragment.newInstance("HOME", "HOME"), "DETAILS")
+        adapter.addFragment(ComicCharactersFragment.newInstance("HOME", "HOME"), "CHARACTERS")
+        adapter.addFragment(ComicCreatorFragment.newInstance("HOME", "HOME"), "CREATOR")
         viewPager.adapter = adapter
     }
 

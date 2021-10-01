@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.retokmm.Greeting
 import com.example.retokmm.android.databinding.FragmentCharactersBinding
 import com.example.retokmm.android.ui.character.CharactersAdapter
 import com.example.retokmm.android.ui.character.CharactersViewModel
 import com.example.retokmm.android.ui.character.ClickCharcter
+import com.example.retokmm.android.ui.comic.ComicFragmentDirections
 import com.scotiabank.bootcamp.squad3.digitalsbc.core.showSnackbar
 import kotlinx.parcelize.Parcelize
 import java.io.Serializable
@@ -49,6 +51,8 @@ class CharactersFragment : Fragment(), ClickCharcter {
 
     override fun onClick(character: Character) {
         mBinding.root.showSnackbar("Personaje ${character.name} seleccionado")
+        val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterInfoFragment(character)
+        Navigation.findNavController(mBinding.root).navigate(action)
     }
 
 }

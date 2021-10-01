@@ -16,7 +16,7 @@ class CharactersViewModel: ViewModel() {
     fun onCreate() {
         viewModelScope.launch {
             isLoading.postValue(true)
-            delay(5000)
+            delay(1000)
             listCharacters.postValue(listCharacters())
             isLoading.postValue(false)
         }

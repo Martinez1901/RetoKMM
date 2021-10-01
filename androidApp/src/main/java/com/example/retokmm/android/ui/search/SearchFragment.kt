@@ -9,6 +9,8 @@ import com.example.retokmm.android.R
 import com.example.retokmm.android.databinding.FragmentSearchBinding
 import android.widget.EditText
 import android.widget.TextView
+import androidx.navigation.Navigation
+import com.example.retokmm.android.ui.comic.ComicFragmentDirections
 
 
 class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
@@ -27,8 +29,14 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //mBinding.tvSearch.text = greet()
-
-
+        mBinding.imgComics.setOnClickListener {
+            val action = SearchFragmentDirections.actionSearchFragmentToSearchContentFragment("comics")
+            Navigation.findNavController(mBinding.root).navigate(action)
+        }
+        mBinding.imgCharacter.setOnClickListener {
+            val action = SearchFragmentDirections.actionSearchFragmentToSearchContentFragment("character")
+            Navigation.findNavController(mBinding.root).navigate(action)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

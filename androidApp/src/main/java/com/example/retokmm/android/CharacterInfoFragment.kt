@@ -5,55 +5,60 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.example.retokmm.android.databinding.FragmentCharacterInfoBinding
+import java.util.ArrayList
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CharacterInfoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CharacterInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var mBinding: FragmentCharacterInfoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_character_info, container, false)
+        mBinding = FragmentCharacterInfoBinding.inflate(inflater, container, false)
+        return mBinding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CharacterInfoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CharacterInfoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mBinding.apply {
+            setupViewPager(viewPager)
+            tabLayout.setupWithViewPager(viewPager)
+        }
+    }
+
+    private fun setupViewPager(viewPager: ViewPager) {
+        val adapter = SectionsPagerAdapter(requireActivity().supportFragmentManager)
+        //adapter.addFragment(SearchContentFragment.newInstance("HOME", "HOME"), "DETAILS")
+        //adapter.addFragment(SearchContentFragment.newInstance("HOME", "HOME"), "COMICS")
+        viewPager.adapter = adapter
+    }
+
+    private class SectionsPagerAdapter(manager: FragmentManager?) :
+        FragmentPagerAdapter(manager!!) {
+        private val mFragmentList: MutableList<Fragment> = ArrayList()
+        private val mFragmentTitleList: MutableList<String> = ArrayList()
+        override fun getItem(position: Int): Fragment {
+            return mFragmentList[position]
+        }
+
+        override fun getCount(): Int {
+            return mFragmentList.size
+        }
+
+        fun addFragment(fragment: Fragment, title: String) {
+            mFragmentList.add(fragment)
+            mFragmentTitleList.add(title)
+        }
+
+        override fun getPageTitle(position: Int): CharSequence? {
+            return mFragmentTitleList[position]
+        }
     }
 }

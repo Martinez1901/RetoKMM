@@ -3,29 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchContentFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.search.SearchContentFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAppearance="?attr/textAppearanceHeadline1"
-            android:text="@string/hello_blank_fragment" />
+        android:padding="8dp">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/outlinedTextField"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAppearance="?attr/textAppearanceHeadline1"
-            android:text="@string/hello_blank_fragment" />
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:hint="Buscar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
 
-        <TextView
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAppearance="?attr/textAppearanceHeadline1"
-            android:text="@string/hello_blank_fragment" />
-    </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/outlinedTextField"
+            android:layout_marginTop="16dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

@@ -15,7 +15,7 @@ class ComicViewModel: ViewModel() {
     fun onCreate() {
         viewModelScope.launch {
             isLoading.postValue(true)
-            delay(5000)
+            delay(1000)
             listComics.postValue(listComics())
             isLoading.postValue(false)
         }
@@ -23,12 +23,12 @@ class ComicViewModel: ViewModel() {
 
     fun listComics(): List<Character> {
         return listOf(
-            Character(1, "Superman", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-            Character(2, "Spider Man", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-            Character(3, "Iron Man", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-            Character(4, "Acuaman", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-            Character(5, "Hulk", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-            Character(6, "Capitan America", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
+            Character(1, "Superman", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b"),
+            Character(2, "Spider Man", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b"),
+            Character(3, "Iron Man", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b"),
+            Character(4, "Acuaman", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b"),
+            Character(5, "Hulk", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b"),
+            Character(6, "Capitan America", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b"),
         )
     }
 }

@@ -39,7 +39,7 @@
     </fragment>
     <fragment
         android:id="@+id/comicInfoFragment"
-        android:name="com.example.retokmm.android.ComicInfoFragment"
+        android:name="com.example.retokmm.android.ui.comic_info.ComicInfoFragment"
         android:label="fragment_comic_info"
         tools:layout="@layout/fragment_comic_info" >
         <argument
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchContentFragment"
-        android:name="com.example.retokmm.android.SearchContentFragment"
+        android:name="com.example.retokmm.android.ui.search.SearchContentFragment"
         android:label="fragment_search_content"
         tools:layout="@layout/fragment_search_content" >
         <argument

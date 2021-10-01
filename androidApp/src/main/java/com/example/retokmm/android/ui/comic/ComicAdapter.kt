@@ -31,7 +31,7 @@ class ComicAdapter(var list: List<Character>, val clickComic: ClickComic): Recyc
         val binding = ItemComicBinding.bind(view)
 
         fun bind(comic: Character) {
-            binding.imgComic.load(comic.thumbnailPath)
+            binding.imgComic.load("${comic.thumbnailPath}/portrait_uncanny.jpg")
             binding.tvComics.text = comic.name
         }
 
