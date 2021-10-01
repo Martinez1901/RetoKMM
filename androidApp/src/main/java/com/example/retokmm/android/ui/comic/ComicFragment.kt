@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.retokmm.Greeting
 import com.example.retokmm.android.Character
 import com.example.retokmm.android.databinding.FragmentComicBinding
@@ -14,6 +17,7 @@ import com.scotiabank.bootcamp.squad3.digitalsbc.core.showSnackbar
 class ComicFragment : Fragment(), ClickComic {
 
     private lateinit var mBinding: FragmentComicBinding
+    private val comicViewModel: ComicViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,19 +31,16 @@ class ComicFragment : Fragment(), ClickComic {
         super.onViewCreated(view, savedInstanceState)
         mBinding.tvHome.text = greet()
 
-        mBinding.recyclerViewComic.adapter = ComicAdapter(listComics(), this)
+        comicViewModel.onCreate()
 
-    }
+        comicViewModel.isLoading.observe(requireActivity(), {
+            mBinding.progressBar.isVisible = it
+        })
 
-    fun listComics(): List<Character> {
-        return listOf(
-            Character(1, "Superman", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-            Character(2, "Spider Man", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-            Character(3, "Iron Man", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-            Character(4, "Acuaman", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-            Character(5, "Hulk", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-            Character(6, "Capitan America", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b/portrait_uncanny.jpg"),
-        )
+        comicViewModel.listComics.observe(requireActivity(), {
+            mBinding.recyclerViewComic.adapter = ComicAdapter(it, this)
+        })
+
     }
 
     fun greet(): String {
@@ -48,5 +49,7 @@ class ComicFragment : Fragment(), ClickComic {
 
     override fun onClick(character: Character) {
         mBinding.root.showSnackbar("Comic seleccionado ${character.name}")
+        val action = ComicFragmentDirections.actionComicFragmentToComicInfoFragment(character)
+        Navigation.findNavController(mBinding.root).navigate(action)
     }
 }

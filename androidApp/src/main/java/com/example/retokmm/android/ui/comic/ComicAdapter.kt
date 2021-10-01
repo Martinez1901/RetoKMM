@@ -9,7 +9,7 @@ import com.example.retokmm.android.R
 import com.example.retokmm.android.databinding.ItemComicBinding
 import com.scotiabank.bootcamp.squad3.digitalsbc.core.inflate
 
-class ComicAdapter(val list: List<Character>, val clickComic: ClickComic): RecyclerView.Adapter<ComicAdapter.ViewHolder>(){
+class ComicAdapter(var list: List<Character>, val clickComic: ClickComic): RecyclerView.Adapter<ComicAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = parent.inflate(R.layout.item_comic)

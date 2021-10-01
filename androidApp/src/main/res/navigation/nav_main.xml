@@ -9,12 +9,20 @@
         android:id="@+id/comicFragment"
         android:name="com.example.retokmm.android.ui.comic.ComicFragment"
         android:label="fragment_comic"
-        tools:layout="@layout/fragment_comic" />
+        tools:layout="@layout/fragment_comic" >
+        <action
+            android:id="@+id/action_comicFragment_to_comicInfoFragment"
+            app:destination="@id/comicInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.retokmm.android.ui.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchContentFragment"
+            app:destination="@id/searchContentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/accountFragment"
         android:name="com.example.retokmm.android.ui.account.AccountFragment"
@@ -24,5 +32,41 @@
         android:id="@+id/charactersFragment"
         android:name="com.example.retokmm.android.CharactersFragment"
         android:label="fragment_characters"
-        tools:layout="@layout/fragment_characters" />
+        tools:layout="@layout/fragment_characters" >
+        <action
+            android:id="@+id/action_charactersFragment_to_characterInfoFragment"
+            app:destination="@id/characterInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicInfoFragment"
+        android:name="com.example.retokmm.android.ComicInfoFragment"
+        android:label="fragment_comic_info"
+        tools:layout="@layout/fragment_comic_info" >
+        <argument
+            android:name="character"
+            app:argType="com.example.retokmm.android.Character"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterInfoFragment"
+        android:name="com.example.retokmm.android.CharacterInfoFragment"
+        android:label="fragment_character_info"
+        tools:layout="@layout/fragment_character_info" >
+        <argument
+            android:name="character"
+            app:argType="com.example.retokmm.android.Character"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchContentFragment"
+        android:name="com.example.retokmm.android.SearchContentFragment"
+        android:label="fragment_search_content"
+        tools:layout="@layout/fragment_search_content" >
+        <argument
+            android:name="type"
+            app:argType="string"
+            android:defaultValue="comics" />
+    </fragment>
 </navigation>
