@@ -22,7 +22,7 @@ class CharactersViewModel: ViewModel() {
         }
     }
 
-    fun listCharacters(): List<Character> {
+    private fun listCharacters(): List<Character> {
         return listOf(
             Character(1, "Superman", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/standard_fantastic.jpg"),
             Character(2, "Spider Man", thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784/standard_fantastic.jpg"),

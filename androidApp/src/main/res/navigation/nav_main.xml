@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterInfoFragment"
-        android:name="com.example.retokmm.android.CharacterInfoFragment"
+        android:name="com.example.retokmm.android.ui.character_info.CharacterInfoFragment"
         android:label="fragment_character_info"
         tools:layout="@layout/fragment_character_info" >
         <argument

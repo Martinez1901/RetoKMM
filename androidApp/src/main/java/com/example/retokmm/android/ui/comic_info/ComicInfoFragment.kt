@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager.widget.ViewPager
+import coil.load
+import com.example.retokmm.android.Character
 import com.example.retokmm.android.databinding.FragmentComicInfoBinding
 import java.util.ArrayList
 
@@ -15,27 +18,27 @@ import java.util.ArrayList
 class ComicInfoFragment : Fragment() {
 
     private lateinit var mBinding: FragmentComicInfoBinding
+    private val args : ComicInfoFragmentArgs by navArgs()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentComicInfoBinding.inflate(inflater, container, false)
+
+        mBinding.tabLayout.setupWithViewPager(mBinding.viewPager)
+        with(args.character!!) {
+            mBinding.imgToolbarComic.load("${thumbnailPath}/standard_fantastic.jpg")
+            setupViewPager(mBinding.viewPager, this)
+        }
+
         return mBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        mBinding.apply {
-            setupViewPager(viewPager)
-            tabLayout.setupWithViewPager(viewPager)
-        }
-    }
-
-    private fun setupViewPager(viewPager: ViewPager) {
+    private fun setupViewPager(viewPager: ViewPager, character: Character) {
         val adapter = SectionsPagerAdapter(requireActivity().supportFragmentManager)
-        adapter.addFragment(ComicDetailsFragment.newInstance("HOME", "HOME"), "DETAILS")
+        adapter.addFragment(ComicDetailsFragment.newInstance(character.description), "DETAILS")
         adapter.addFragment(ComicCharactersFragment.newInstance("HOME", "HOME"), "CHARACTERS")
         adapter.addFragment(ComicCreatorFragment.newInstance("HOME", "HOME"), "CREATOR")
         viewPager.adapter = adapter
@@ -62,5 +65,7 @@ class ComicInfoFragment : Fragment() {
             return mFragmentTitleList[position]
         }
     }
+
+
 
 }

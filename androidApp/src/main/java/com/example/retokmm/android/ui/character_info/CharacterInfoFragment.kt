@@ -1,4 +1,4 @@
-package com.example.retokmm.android
+package com.example.retokmm.android.ui.character_info
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.example.retokmm.android.R
 import com.example.retokmm.android.databinding.FragmentCharacterInfoBinding
 import java.util.ArrayList
 
@@ -35,8 +36,8 @@ class CharacterInfoFragment : Fragment() {
 
     private fun setupViewPager(viewPager: ViewPager) {
         val adapter = SectionsPagerAdapter(requireActivity().supportFragmentManager)
-        //adapter.addFragment(SearchContentFragment.newInstance("HOME", "HOME"), "DETAILS")
-        //adapter.addFragment(SearchContentFragment.newInstance("HOME", "HOME"), "COMICS")
+        adapter.addFragment(CharacterDetailsFragment.newInstance("HOME", "HOME"), getString(R.string.details))
+        adapter.addFragment(CharacterComicsFragment.newInstance("HOME", "HOME"), getString(R.string.comics))
         viewPager.adapter = adapter
     }
 

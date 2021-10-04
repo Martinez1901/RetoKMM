@@ -61,6 +61,6 @@ class CharactersFragment : Fragment(), ClickCharcter {
 data class Character(
     val id: Int,
     val name: String,
-    val description: String? = "",
+    val description: String = "",
     val thumbnailPath: String,
 ): Serializable
