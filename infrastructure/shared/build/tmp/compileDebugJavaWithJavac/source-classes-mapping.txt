@@ -1,0 +1,2 @@
+com/example/retokmm/BuildConfig.java
+ com.example.retokmm.BuildConfig

@@ -7,7 +7,7 @@ pluginManagement {
 }
 
 rootProject.name = "RetoKMM"
-include(":androidApp")
-include(":shared")
-include(":domain")
-include(":dataAccess")
+include(":infrastructure:androidApp")
+include(":infrastructure:shared")
+include(":infrastructure:domain")
+include(":infrastructure:dataAccess")
