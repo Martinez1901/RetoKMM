@@ -1,6 +1,6 @@
 framework module domain {
-    umbrella header "domain.h"
+  umbrella header "placeholder.h"
 
-    export *
-    module * { export * }
+  export *
+  module * { export * }
 }

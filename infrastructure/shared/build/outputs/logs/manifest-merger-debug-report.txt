@@ -1,25 +1,29 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml:2:1-43
-INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml:2:1-43
-INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml:2:1-43
+ADDED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml:2:1-5:12
+INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml:2:1-5:12
+INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml:2:1-5:12
 	package
-		ADDED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml:2:11-40
-		INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
-		INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml:2:11-40
+		INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml:2:1-43
+		ADDED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml:3:5-63
+uses-permission#android.permission.INTERNET
+ADDED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml:4:5-66
+	android:name
+		ADDED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml:4:22-64
 uses-sdk
-INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
-INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
-INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
-INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
+INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
-		ADDED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
-		INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
-		ADDED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
-		INJECTED from /Users/luis.martinez/Documents/RetoKMM/infrastructure/shared/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
+		ADDED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml
+		INJECTED from /Users/fgardila-hackintosh/Desarrollo/Android/RetoKMM_New/infrastructure/shared/src/androidMain/AndroidManifest.xml

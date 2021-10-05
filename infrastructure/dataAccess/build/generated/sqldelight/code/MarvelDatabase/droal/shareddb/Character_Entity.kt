@@ -2,15 +2,15 @@ package droal.shareddb
 
 import kotlin.String
 
-data class Character_Entity(
-  val id: String,
-  val name: String,
-  val description: String?,
-  val modified: String?,
-  val resourceURI: String?,
-  val thumbnailId: String
+public data class Character_Entity(
+  public val id: String,
+  public val name: String,
+  public val description: String?,
+  public val modified: String?,
+  public val resourceURI: String?,
+  public val thumbnailId: String
 ) {
-  override fun toString(): String = """
+  public override fun toString(): String = """
   |Character_Entity [
   |  id: $id
   |  name: $name

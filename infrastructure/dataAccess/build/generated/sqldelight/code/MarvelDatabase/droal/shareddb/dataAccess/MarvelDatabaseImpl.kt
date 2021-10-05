@@ -2,9 +2,9 @@ package droal.shareddb.dataAccess
 
 import com.squareup.sqldelight.Query
 import com.squareup.sqldelight.TransacterImpl
+import com.squareup.sqldelight.`internal`.copyOnWriteList
 import com.squareup.sqldelight.db.SqlCursor
 import com.squareup.sqldelight.db.SqlDriver
-import com.squareup.sqldelight.internal.copyOnWriteList
 import droal.shareddb.Character_Entity
 import droal.shareddb.MarvelDatabase
 import droal.shareddb.MarvelDatabaseQueries
@@ -12,6 +12,7 @@ import droal.shareddb.SelectAllCharacters
 import kotlin.Any
 import kotlin.Int
 import kotlin.String
+import kotlin.Unit
 import kotlin.collections.MutableList
 import kotlin.jvm.JvmField
 import kotlin.reflect.KClass
@@ -25,14 +26,14 @@ internal fun KClass<MarvelDatabase>.newInstance(driver: SqlDriver): MarvelDataba
 private class MarvelDatabaseImpl(
   driver: SqlDriver
 ) : TransacterImpl(driver), MarvelDatabase {
-  override val marvelDatabaseQueries: MarvelDatabaseQueriesImpl = MarvelDatabaseQueriesImpl(this,
-      driver)
+  public override val marvelDatabaseQueries: MarvelDatabaseQueriesImpl =
+      MarvelDatabaseQueriesImpl(this, driver)
 
-  object Schema : SqlDriver.Schema {
-    override val version: Int
+  public object Schema : SqlDriver.Schema {
+    public override val version: Int
       get() = 1
 
-    override fun create(driver: SqlDriver) {
+    public override fun create(driver: SqlDriver): Unit {
       driver.execute(null, """
           |CREATE TABLE Character_Entity (
           |    id TEXT NOT NULL PRIMARY KEY,
@@ -51,11 +52,11 @@ private class MarvelDatabaseImpl(
           """.trimMargin(), 0)
     }
 
-    override fun migrate(
+    public override fun migrate(
       driver: SqlDriver,
       oldVersion: Int,
       newVersion: Int
-    ) {
+    ): Unit {
     }
   }
 }
@@ -68,7 +69,7 @@ private class MarvelDatabaseQueriesImpl(
 
   internal val selectCharacterById: MutableList<Query<*>> = copyOnWriteList()
 
-  override fun <T : Any> selectAllCharacters(mapper: (
+  public override fun <T : Any> selectAllCharacters(mapper: (
     id: String,
     name: String,
     description: String?,
@@ -95,10 +96,10 @@ private class MarvelDatabaseQueriesImpl(
     )
   }
 
-  override fun selectAllCharacters(): Query<SelectAllCharacters> =
+  public override fun selectAllCharacters(): Query<SelectAllCharacters> =
       selectAllCharacters(::SelectAllCharacters)
 
-  override fun <T : Any> selectCharacterById(id: String, mapper: (
+  public override fun <T : Any> selectCharacterById(id: String, mapper: (
     id: String,
     name: String,
     description: String?,
@@ -116,17 +117,17 @@ private class MarvelDatabaseQueriesImpl(
     )
   }
 
-  override fun selectCharacterById(id: String): Query<Character_Entity> = selectCharacterById(id,
-      ::Character_Entity)
+  public override fun selectCharacterById(id: String): Query<Character_Entity> =
+      selectCharacterById(id, ::Character_Entity)
 
-  override fun insertCharacter(
+  public override fun insertCharacter(
     id: String,
     name: String,
     description: String?,
     modified: String?,
     resourceURI: String?,
     thumbnailId: String
-  ) {
+  ): Unit {
     driver.execute(-1811368685, """
     |INSERT INTO Character_Entity(id, name, description, modified, resourceURI, thumbnailId)
     |VALUES(?, ?, ?, ?, ?, ?)
@@ -142,7 +143,7 @@ private class MarvelDatabaseQueriesImpl(
         database.marvelDatabaseQueries.selectCharacterById})
   }
 
-  override fun insertThumbnail(idThumb: String, path: String) {
+  public override fun insertThumbnail(idThumb: String, path: String): Unit {
     driver.execute(-2045031722, """
     |INSERT INTO Thumbnail_Entity(idThumb, path)
     |VALUES(?, ?)
@@ -153,29 +154,29 @@ private class MarvelDatabaseQueriesImpl(
     notifyQueries(-2045031722, {database.marvelDatabaseQueries.selectAllCharacters})
   }
 
-  override fun removeAllCharacters() {
+  public override fun removeAllCharacters(): Unit {
     driver.execute(1269623786, """DELETE FROM Character_Entity""", 0)
     notifyQueries(1269623786, {database.marvelDatabaseQueries.selectAllCharacters +
         database.marvelDatabaseQueries.selectCharacterById})
   }
 
-  override fun removeAllThumbnail() {
+  public override fun removeAllThumbnail(): Unit {
     driver.execute(-1578180756, """DELETE FROM Thumbnail_Entity""", 0)
     notifyQueries(-1578180756, {database.marvelDatabaseQueries.selectAllCharacters})
   }
 
   private inner class SelectCharacterByIdQuery<out T : Any>(
     @JvmField
-    val id: String,
+    public val id: String,
     mapper: (SqlCursor) -> T
   ) : Query<T>(selectCharacterById, mapper) {
-    override fun execute(): SqlCursor = driver.executeQuery(-287812062, """
+    public override fun execute(): SqlCursor = driver.executeQuery(-287812062, """
     |SELECT * FROM Character_Entity
     |WHERE id = ?
     """.trimMargin(), 1) {
       bindString(1, id)
     }
 
-    override fun toString(): String = "MarvelDatabase.sq:selectCharacterById"
+    public override fun toString(): String = "MarvelDatabase.sq:selectCharacterById"
   }
 }

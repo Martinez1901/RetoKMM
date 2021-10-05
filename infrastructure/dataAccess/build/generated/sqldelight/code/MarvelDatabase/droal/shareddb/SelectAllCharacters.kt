@@ -2,17 +2,17 @@ package droal.shareddb
 
 import kotlin.String
 
-data class SelectAllCharacters(
-  val id: String,
-  val name: String,
-  val description: String?,
-  val modified: String?,
-  val resourceURI: String?,
-  val thumbnailId: String,
-  val idThumb: String,
-  val path: String
+public data class SelectAllCharacters(
+  public val id: String,
+  public val name: String,
+  public val description: String?,
+  public val modified: String?,
+  public val resourceURI: String?,
+  public val thumbnailId: String,
+  public val idThumb: String,
+  public val path: String
 ) {
-  override fun toString(): String = """
+  public override fun toString(): String = """
   |SelectAllCharacters [
   |  id: $id
   |  name: $name
