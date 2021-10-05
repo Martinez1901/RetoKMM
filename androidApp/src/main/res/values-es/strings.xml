@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="home">Inicio</string>
-    <string name="search">Search</string>
-    <string name="account">Account</string>
+    <string name="search">Buscar</string>
+    <string name="account">Cuenta</string>
     <string name="app_name">Reto KMM</string>
     <string name="characters">Personajes</string>
     <string name="comics">Comics</string>
+    <string name="details">detalles</string>
+    <string name="Creators">creadores</string>
 </resources>

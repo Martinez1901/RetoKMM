@@ -41,10 +41,50 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorAccent">
+
+            <TextView
+                android:id="@+id/tvNameComic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cbFavorite"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textAppearance="?attr/textAppearanceHeadline6" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbFavorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/states_cb_favorite"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvNameComic"
+                android:layout_margin="16dp"
+                android:layout_centerVertical="true"
+                android:buttonTint="@android:color/white"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_below="@+id/titleLayout"
             android:background="@android:color/black"
             app:layout_collapseMode="pin"
             app:tabGravity="center"
@@ -55,12 +95,11 @@
             app:tabTextAppearance="?attr/textAppearanceSubtitle2"
             app:tabTextColor="@color/grey_10" />
 
-        <androidx.viewpager.widget.ViewPager
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/tabLayout"
-            />
+            android:layout_below="@id/tabLayout" />
 
     </RelativeLayout>
 

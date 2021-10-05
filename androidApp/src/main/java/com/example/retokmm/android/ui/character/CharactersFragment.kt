@@ -13,9 +13,7 @@ import com.example.retokmm.android.databinding.FragmentCharactersBinding
 import com.example.retokmm.android.ui.character.CharactersAdapter
 import com.example.retokmm.android.ui.character.CharactersViewModel
 import com.example.retokmm.android.ui.character.ClickCharcter
-import com.example.retokmm.android.ui.comic.ComicFragmentDirections
-import com.scotiabank.bootcamp.squad3.digitalsbc.core.showSnackbar
-import kotlinx.parcelize.Parcelize
+import com.example.retokmm.android.core.showSnackbar
 import java.io.Serializable
 
 

@@ -7,7 +7,7 @@ import coil.load
 import com.example.retokmm.android.Character
 import com.example.retokmm.android.R
 import com.example.retokmm.android.databinding.ItemComicBinding
-import com.scotiabank.bootcamp.squad3.digitalsbc.core.inflate
+import com.example.retokmm.android.core.inflate
 
 class ComicAdapter(var list: List<Character>, val clickComic: ClickComic): RecyclerView.Adapter<ComicAdapter.ViewHolder>(){
 

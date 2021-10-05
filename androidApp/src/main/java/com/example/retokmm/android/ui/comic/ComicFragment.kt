@@ -11,7 +11,7 @@ import androidx.navigation.Navigation
 import com.example.retokmm.Greeting
 import com.example.retokmm.android.Character
 import com.example.retokmm.android.databinding.FragmentComicBinding
-import com.scotiabank.bootcamp.squad3.digitalsbc.core.showSnackbar
+import com.example.retokmm.android.core.showSnackbar
 
 
 class ComicFragment : Fragment(), ClickComic {

@@ -8,7 +8,7 @@ import coil.transform.CircleCropTransformation
 import com.example.retokmm.android.Character
 import com.example.retokmm.android.R
 import com.example.retokmm.android.databinding.ItemCharactersBinding
-import com.scotiabank.bootcamp.squad3.digitalsbc.core.inflate
+import com.example.retokmm.android.core.inflate
 
 class CharactersAdapter(val list: List<Character>, val clickCharcter: ClickCharcter): RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
 
@@ -32,7 +32,7 @@ class CharactersAdapter(val list: List<Character>, val clickCharcter: ClickCharc
         val binding = ItemCharactersBinding.bind(view)
 
         fun bind(character: Character) {
-            binding.imgCharacter.load(character.thumbnailPath) {
+            binding.imgCharacter.load("${character.thumbnailPath}/standard_fantastic.jpg") {
                 crossfade(true)
                 placeholder(R.drawable.ic_image)
                 transformations(CircleCropTransformation())
