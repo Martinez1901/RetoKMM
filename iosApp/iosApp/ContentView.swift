@@ -1,8 +1,7 @@
 import SwiftUI
-import domain
 
 struct ContentView: View {
-    let test = Test().getData()
+    let test = "fjklafjlad"
 
 	var body: some View {
 		Text(test)
