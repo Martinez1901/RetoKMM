@@ -1,16 +1,15 @@
 package com.droal.marvel.network.service
 
+import com.droal.marvel.network.ServiceFactory
 import com.example.domain.model.dto.CharacterDataWrapperDto
-import com.example.retokmm.util.Constants.BASE_URL
 import com.example.retokmm.util.Constants.CHARACTERS
-import io.ktor.client.*
 import io.ktor.client.request.get
 
 class CharacterEndPoints(
-    private val client: HttpClient
+    private val client: ServiceFactory
 ) {
 
     suspend fun allCharacters() : CharacterDataWrapperDto =
-        client.get(BASE_URL + CHARACTERS)
+        client.getClient(CHARACTERS).get()
 
 }

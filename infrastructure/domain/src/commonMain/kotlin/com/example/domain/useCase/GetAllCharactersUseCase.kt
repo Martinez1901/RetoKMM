@@ -19,7 +19,6 @@ class GetAllCharactersUseCase(
         }
     }
 
-    @Throws(Exception::class)
     private suspend fun getAllCharactersNetwork(): Response<List<Character>>{
         val response: Response<List<Character>> = repository.getAllCharactersFromNetwork()
         repository.clearDatabase()

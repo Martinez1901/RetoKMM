@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
+    kotlin("plugin.serialization")
     id("com.android.library")
     id("com.squareup.sqldelight")
 }
@@ -30,6 +31,7 @@ kotlin {
     
     sourceSets {
         val ktorVersion = "1.6.1"
+        val serializationVersion = "1.2.2"
         val sqlDelightVersion: String by project
         val kodeinVersion = "7.1.0"
 
@@ -40,6 +42,8 @@ kotlin {
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 // SQL Delight
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                //SERIALIZATION
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 // KODE IN
                 implementation ("org.kodein.di:kodein-di:$kodeinVersion")
                 implementation(project(":infrastructure:domain"))

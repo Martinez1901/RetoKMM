@@ -1,2 +1,0 @@
-com/example/dataaccess/BuildConfig.java
- com.example.dataaccess.BuildConfig
