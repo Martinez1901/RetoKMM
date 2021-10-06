@@ -30,7 +30,6 @@ kotlin {
     
     sourceSets {
         val ktorVersion = "1.6.1"
-        val serializationVersion = "1.2.2"
         val sqlDelightVersion: String by project
         val kodeinVersion = "7.1.0"
 
@@ -39,13 +38,12 @@ kotlin {
                 // KTOR
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
-                //SERIALIZATION
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 // SQL Delight
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
                 // KODE IN
                 implementation ("org.kodein.di:kodein-di:$kodeinVersion")
                 implementation(project(":infrastructure:domain"))
+                implementation(project(":infrastructure:shared"))
             }
         }
         val commonTest by getting {

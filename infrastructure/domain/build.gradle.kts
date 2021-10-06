@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
+    kotlin("plugin.serialization")
     id("com.android.library")
 }
 
@@ -29,8 +30,11 @@ kotlin {
     
     sourceSets {
         val kodeinVersion = "7.1.0"
+        val serializationVersion = "1.2.2"
         val commonMain by getting {
             dependencies {
+                //SERIALIZATION
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
                 // KODE IN
                 implementation ("org.kodein.di:kodein-di:$kodeinVersion")
                 implementation(project(":infrastructure:shared"))
