@@ -2,7 +2,7 @@ package com.droal.marvel.network.service
 
 import com.droal.marvel.network.ServiceFactory
 import com.example.domain.model.dto.CharacterDataWrapperDto
-import com.example.retokmm.util.Constants.CHARACTERS
+import com.example.utilities.Constants.CHARACTERS
 import io.ktor.client.request.get
 
 class CharacterEndPoints(

@@ -4,10 +4,14 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":infrastructure:domain"))
+    implementation(project(":infrastructure:shared"))
+    implementation(project(":infrastructure:dataAccess"))
+    implementation("dev.icerock.moko:mvvm:0.11.0")
     implementation("com.google.android.material:material:1.3.0")
     implementation("androidx.appcompat:appcompat:1.2.0")
     implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    // MULTI DEX
+    implementation ("androidx.multidex:multidex:2.0.1")
 }
 
 android {

@@ -5,6 +5,7 @@ plugins {
     kotlin("native.cocoapods")
     kotlin("plugin.serialization")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 version = "1.0"
@@ -29,7 +30,21 @@ kotlin {
     }
     
     sourceSets {
-        val commonMain by getting
+        val kodeinVersion = "7.1.0"
+        val mokomvvmVersion = "0.11.0"
+        val sqlDelightVersion: String by project
+        val commonMain by getting {
+            dependencies {
+                implementation ("org.kodein.di:kodein-di:$kodeinVersion")
+                // MOKO - MVVM
+                implementation ("dev.icerock.moko:mvvm:$mokomvvmVersion")
+                implementation("io.ktor:ktor-client-core:1.6.3")
+                implementation("io.ktor:ktor-client-serialization:1.6.3")
+                implementation(project(":infrastructure:utilities"))
+                implementation(project(":infrastructure:domain"))
+                implementation(project(":infrastructure:dataAccess"))
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))

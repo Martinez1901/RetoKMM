@@ -1,7 +1,7 @@
 package com.example.domain.repository
 
 import com.example.domain.model.Character
-import com.example.retokmm.util.Response
+import com.example.utilities.Response
 
 interface ICharacterRepository  {
 

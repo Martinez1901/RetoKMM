@@ -5,7 +5,7 @@ import com.droal.marvel.db.entity.toCharacter
 import com.droal.marvel.network.api.ICharacterAPI
 import com.example.domain.model.Character
 import com.example.domain.repository.ICharacterRepository
-import com.example.retokmm.util.Response
+import com.example.utilities.Response
 
 class CharacterRepositoryImpl (
     private val dbDataSource: IDatabaseSource,

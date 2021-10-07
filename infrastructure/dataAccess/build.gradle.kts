@@ -44,10 +44,8 @@ kotlin {
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
                 //SERIALIZATION
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
-                // KODE IN
-                implementation ("org.kodein.di:kodein-di:$kodeinVersion")
                 implementation(project(":infrastructure:domain"))
-                implementation(project(":infrastructure:shared"))
+                implementation(project(":infrastructure:utilities"))
             }
         }
         val commonTest by getting {

@@ -1,7 +1,7 @@
 package com.droal.marvel.network.api
 
 import com.example.domain.model.Character
-import com.example.retokmm.util.Response
+import com.example.utilities.Response
 
 interface ICharacterAPI {
 

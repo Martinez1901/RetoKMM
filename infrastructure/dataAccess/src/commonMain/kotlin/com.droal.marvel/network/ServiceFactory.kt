@@ -1,7 +1,10 @@
 package com.droal.marvel.network
 
-import com.example.retokmm.util.Constants
-import com.example.retokmm.util.Constants.BASE_URL
+import com.example.utilities.Constants
+import com.example.utilities.Constants.API_KEY
+import com.example.utilities.Constants.BASE_URL
+import com.example.utilities.Constants.HASH
+import com.example.utilities.Constants.TS
 import io.ktor.client.HttpClient
 import io.ktor.client.features.defaultRequest
 import io.ktor.client.features.json.JsonFeature
@@ -16,9 +19,9 @@ class ServiceFactory {
     fun getClient(path: String) = HttpClient {
         defaultRequest {
             url("$BASE_URL$path")
-            parameter("apikey", Constants.API_KEY)
-            parameter("ts", Constants.TS)
-            parameter("hash", Constants.HASH)
+            parameter("apikey", API_KEY)
+            parameter("ts", TS)
+            parameter("hash", HASH)
         }
         install(JsonFeature) {
             val json = Json {

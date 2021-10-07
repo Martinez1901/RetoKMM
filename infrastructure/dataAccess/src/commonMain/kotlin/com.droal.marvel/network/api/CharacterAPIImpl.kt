@@ -4,7 +4,7 @@ import com.droal.marvel.network.service.CharacterEndPoints
 import com.example.domain.model.Character
 import com.example.domain.model.dto.CharacterDataWrapperDto
 import com.example.domain.model.dto.toCharacter
-import com.example.retokmm.util.Response
+import com.example.utilities.Response
 
 class CharacterAPIImpl(
     private val characterEndPoints: CharacterEndPoints

@@ -1,11 +1,12 @@
 import SwiftUI
-import domain
+import shared
 
 struct ContentView: View {
-    let test = Test().getData()
-
+    
+    let viewModel = ViewModelTest()
+    
 	var body: some View {
-		Text(test)
+        Text(viewModel.getData())
 	}
 }
 
