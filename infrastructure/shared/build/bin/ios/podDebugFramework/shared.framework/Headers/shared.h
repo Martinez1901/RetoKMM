@@ -6,7 +6,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSValue.h>
 
-@class SharedInjectorCommon, SharedDataAccessContextArg, SharedMvvm_coreViewModel, SharedMvvm_livedataMutableLiveData<T>, SharedMvvm_livedataLiveData<T>, SharedKodein_diDIContext<C>, SharedKodein_diDITrigger, SharedKodein_diDIKey<__contravariant C, __contravariant A, __covariant T>, SharedKotlinUnit, SharedKodein_diDIContextCompanion, SharedKodein_typeTypeToken<T>, SharedKodein_diDIDefinition<C, A, T>, SharedKotlinTriple<__covariant A, __covariant B, __covariant C>, SharedKodein_diSearchSpecs, SharedKodein_typeTypeTokenCompanion, SharedKotlinArray<T>, SharedKodein_diDIDefining<C, A, T>, SharedKodein_diReferenceLocal<__covariant T, __covariant R>, SharedKodein_diReferenceLocalCompanion, SharedKodein_diScopeRegistry;
+@class SharedInjectorCommon, SharedDataAccessContextArg, SharedDomainCharacter, SharedUtilitiesResponse<__covariant T>, SharedMvvm_coreViewModel, SharedCharactersListState, SharedMvvm_livedataMutableLiveData<T>, SharedErrorGetCharacterListState, SharedLoadingGetCharacterListState, SharedSuccessGetCharacterListState, SharedMvvm_livedataLiveData<T>, SharedKodein_diDIContext<C>, SharedKodein_diDITrigger, SharedKodein_diDIKey<__contravariant C, __contravariant A, __covariant T>, SharedKotlinUnit, SharedKodein_diDIContextCompanion, SharedKodein_typeTypeToken<T>, SharedKodein_diDIDefinition<C, A, T>, SharedKotlinTriple<__covariant A, __covariant B, __covariant C>, SharedKodein_diSearchSpecs, SharedKodein_typeTypeTokenCompanion, SharedKotlinArray<T>, SharedKodein_diDIDefining<C, A, T>, SharedKodein_diReferenceLocal<__covariant T, __covariant R>, SharedKodein_diReferenceLocalCompanion, SharedKodein_diScopeRegistry;
 
 @protocol SharedKotlinx_coroutines_coreCoroutineScope, SharedKodein_diDI, SharedKotlinCoroutineContext, SharedKodein_diDIContainer, SharedKodein_diDIAware, SharedKotlinCoroutineContextElement, SharedKotlinCoroutineContextKey, SharedKodein_diDITree, SharedKodein_diReference, SharedKotlinLazy, SharedKodein_diContextTranslator, SharedKodein_diExternalSource, SharedKodein_diReferenceMaker, SharedKodein_diDIBinding, SharedKodein_diBindingDI, SharedKotlinIterator, SharedKodein_diDIBindingCopier, SharedKodein_diScope, SharedKodein_diBinding, SharedKodein_diDirectDI, SharedKodein_diDirectDIAware, SharedKodein_diDirectDIBase, SharedKodein_diWithContext, SharedKodein_diDIContainerBuilder, SharedKodein_diScopeCloseable;
 
@@ -155,6 +155,13 @@ __attribute__((swift_name("InjectorCommon")))
 @property SharedDataAccessContextArg * _Nullable context __attribute__((swift_name("context")));
 @end;
 
+__attribute__((swift_name("CharactersListState")))
+@interface SharedCharactersListState : SharedBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@property (readonly) SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> * _Nullable response __attribute__((swift_name("response")));
+@end;
+
 __attribute__((swift_name("Mvvm_coreViewModel")))
 @interface SharedMvvm_coreViewModel : SharedBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
@@ -164,13 +171,56 @@ __attribute__((swift_name("Mvvm_coreViewModel")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("ViewModelTest")))
-@interface SharedViewModelTest : SharedMvvm_coreViewModel
+__attribute__((swift_name("CharactersListViewModel")))
+@interface SharedCharactersListViewModel : SharedMvvm_coreViewModel
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 - (NSString *)getData __attribute__((swift_name("getData()")));
 - (void)getInformation __attribute__((swift_name("getInformation()")));
-@property SharedMvvm_livedataMutableLiveData<NSString *> *useCase __attribute__((swift_name("useCase")));
+- (void)onCleared __attribute__((swift_name("onCleared()")));
+@property SharedMvvm_livedataMutableLiveData<SharedCharactersListState *> *getCharactersLiveData __attribute__((swift_name("getCharactersLiveData")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("ErrorGetCharacterListState")))
+@interface SharedErrorGetCharacterListState : SharedCharactersListState
+- (instancetype)initWithResponse:(SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> *)response __attribute__((swift_name("init(response:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
+- (SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> *)component1 __attribute__((swift_name("component1()")));
+- (SharedErrorGetCharacterListState *)doCopyResponse:(SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> *)response __attribute__((swift_name("doCopy(response:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> *response __attribute__((swift_name("response")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("LoadingGetCharacterListState")))
+@interface SharedLoadingGetCharacterListState : SharedCharactersListState
+- (instancetype)initWithResponse:(SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> * _Nullable)response __attribute__((swift_name("init(response:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
+- (SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> * _Nullable)component1 __attribute__((swift_name("component1()")));
+- (SharedLoadingGetCharacterListState *)doCopyResponse:(SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> * _Nullable)response __attribute__((swift_name("doCopy(response:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> * _Nullable response __attribute__((swift_name("response")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("SuccessGetCharacterListState")))
+@interface SharedSuccessGetCharacterListState : SharedCharactersListState
+- (instancetype)initWithResponse:(SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> *)response __attribute__((swift_name("init(response:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
++ (instancetype)new __attribute__((unavailable));
+- (SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> *)component1 __attribute__((swift_name("component1()")));
+- (SharedSuccessGetCharacterListState *)doCopyResponse:(SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> *)response __attribute__((swift_name("doCopy(response:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) SharedUtilitiesResponse<NSArray<SharedDomainCharacter *> *> *response __attribute__((swift_name("response")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -182,6 +232,44 @@ __attribute__((swift_name("KodeInjectorKt")))
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("DataAccessContextArg")))
 @interface SharedDataAccessContextArg : SharedBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("DomainCharacter")))
+@interface SharedDomainCharacter : SharedBase
+- (instancetype)initWithId:(int32_t)id name:(NSString *)name description:(NSString * _Nullable)description modified:(NSString * _Nullable)modified resourceURI:(NSString * _Nullable)resourceURI thumbnailPath:(NSString *)thumbnailPath urls:(NSString *)urls comics:(NSString *)comics stories:(NSString *)stories events:(NSString *)events series:(NSString *)series __attribute__((swift_name("init(id:name:description:modified:resourceURI:thumbnailPath:urls:comics:stories:events:series:)"))) __attribute__((objc_designated_initializer));
+- (int32_t)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component10 __attribute__((swift_name("component10()")));
+- (NSString *)component11 __attribute__((swift_name("component11()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (NSString * _Nullable)component3 __attribute__((swift_name("component3()")));
+- (NSString * _Nullable)component4 __attribute__((swift_name("component4()")));
+- (NSString * _Nullable)component5 __attribute__((swift_name("component5()")));
+- (NSString *)component6 __attribute__((swift_name("component6()")));
+- (NSString *)component7 __attribute__((swift_name("component7()")));
+- (NSString *)component8 __attribute__((swift_name("component8()")));
+- (NSString *)component9 __attribute__((swift_name("component9()")));
+- (SharedDomainCharacter *)doCopyId:(int32_t)id name:(NSString *)name description:(NSString * _Nullable)description modified:(NSString * _Nullable)modified resourceURI:(NSString * _Nullable)resourceURI thumbnailPath:(NSString *)thumbnailPath urls:(NSString *)urls comics:(NSString *)comics stories:(NSString *)stories events:(NSString *)events series:(NSString *)series __attribute__((swift_name("doCopy(id:name:description:modified:resourceURI:thumbnailPath:urls:comics:stories:events:series:)")));
+- (BOOL)isEqual:(id _Nullable)other __attribute__((swift_name("isEqual(_:)")));
+- (NSUInteger)hash __attribute__((swift_name("hash()")));
+- (NSString *)description __attribute__((swift_name("description()")));
+@property (readonly) NSString *comics __attribute__((swift_name("comics")));
+@property (readonly) NSString * _Nullable description_ __attribute__((swift_name("description_")));
+@property (readonly) NSString *events __attribute__((swift_name("events")));
+@property (readonly) int32_t id __attribute__((swift_name("id")));
+@property (readonly) NSString * _Nullable modified __attribute__((swift_name("modified")));
+@property (readonly) NSString *name __attribute__((swift_name("name")));
+@property (readonly) NSString * _Nullable resourceURI __attribute__((swift_name("resourceURI")));
+@property (readonly) NSString *series __attribute__((swift_name("series")));
+@property (readonly) NSString *stories __attribute__((swift_name("stories")));
+@property (readonly) NSString *thumbnailPath __attribute__((swift_name("thumbnailPath")));
+@property (readonly) NSString *urls __attribute__((swift_name("urls")));
+@end;
+
+__attribute__((swift_name("UtilitiesResponse")))
+@interface SharedUtilitiesResponse<__covariant T> : SharedBase
 - (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
 + (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
 @end;

@@ -5,6 +5,8 @@ plugins {
 
 dependencies {
     implementation(project(":infrastructure:shared"))
+    implementation(project(":infrastructure:domain"))
+    implementation(project(":infrastructure:utilities"))
     implementation(project(":infrastructure:dataAccess"))
     implementation("dev.icerock.moko:mvvm:0.11.0")
     implementation("com.google.android.material:material:1.3.0")

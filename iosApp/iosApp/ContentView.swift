@@ -3,7 +3,7 @@ import shared
 
 struct ContentView: View {
     
-    let viewModel = ViewModelTest()
+    let viewModel = CharactersListViewModel()
     
 	var body: some View {
         Text(viewModel.getData())

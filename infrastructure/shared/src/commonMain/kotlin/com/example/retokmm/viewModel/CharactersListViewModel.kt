@@ -6,12 +6,14 @@ import com.example.retokmm.di.KodeinInjector
 import com.example.utilities.Response
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import org.kodein.di.instance
 
-class ViewModelTest : ViewModel() {
+class CharactersListViewModel : ViewModel() {
 
-    var useCase = MutableLiveData("")
+    var getCharactersLiveData =
+        MutableLiveData<CharactersListState>(LoadingGetCharacterListState())
 
     private val getAllCharactersUseCase by KodeinInjector.instance<GetAllCharactersUseCase>()
 
@@ -29,10 +31,23 @@ class ViewModelTest : ViewModel() {
 
     private fun processCharactersListResponse(response: Response<List<Character>>) {
         if (response is Response.Success) {
-            print(response.data)
+            getCharactersLiveData.postValue(
+                SuccessGetCharacterListState(
+                    response
+                )
+            )
         } else if (response is Response.Error) {
-            print(response.error)
+            getCharactersLiveData.postValue(
+                ErrorGetCharacterListState(
+                    response
+                )
+            )
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelScope.cancel()
     }
 
 }
