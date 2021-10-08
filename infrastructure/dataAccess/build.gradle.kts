@@ -19,13 +19,18 @@ kotlin {
         else
             ::iosX64
 
-    iosTarget("ios") {}
+    iosTarget("ios") {
+        binaries {
+            framework {
+                baseName = "dataAccess"
+            }
+        }
+    }
 
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
-        frameworkName = "dataAccess"
         // set path to your ios project podfile, e.g. podfile = project.file("../iosApp/Podfile")
     }
     
@@ -79,11 +84,11 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(31)
+    compileSdk = 31
     sourceSets["main"].manifest.srcFile("AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(22)
-        targetSdkVersion(31)
+        minSdk = 22
+        targetSdk = 31
     }
 }
 

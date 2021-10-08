@@ -1,2 +1,0 @@
-com/example/utilities/BuildConfig.java
- com.example.utilities.BuildConfig
