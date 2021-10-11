@@ -1,6 +1,6 @@
 package com.example.domain.model.dto
 
-import com.example.domain.model.Character
+import com.example.domain.model.CharacterDomain
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
@@ -24,8 +24,8 @@ data class CharacterDto(
     val series: String = "",
 )
 
-fun CharacterDto.toCharacter(): Character{
-    return Character(
+fun CharacterDto.toCharacter(): CharacterDomain{
+    return CharacterDomain(
         id = id,
         name = name,
         description = description,

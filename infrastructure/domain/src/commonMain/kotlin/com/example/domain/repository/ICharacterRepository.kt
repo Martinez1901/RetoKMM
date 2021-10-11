@@ -1,15 +1,15 @@
 package com.example.domain.repository
 
-import com.example.domain.model.Character
+import com.example.domain.model.CharacterDomain
 import com.example.utilities.Response
 
 interface ICharacterRepository  {
 
-    suspend fun getAllCharactersFromDB(): List<Character>
+    suspend fun getAllCharactersFromDB(): List<CharacterDomain>
 
     suspend fun clearDatabase()
 
-    suspend fun insertCharactersInDB(characters: List<Character>)
+    suspend fun insertCharactersInDB(characters: List<CharacterDomain>)
 
-    suspend fun getAllCharactersFromNetwork(): Response<List<Character>>
+    suspend fun getAllCharactersFromNetwork(): Response<List<CharacterDomain>>
 }

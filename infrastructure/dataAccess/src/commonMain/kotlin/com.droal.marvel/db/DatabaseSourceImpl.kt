@@ -1,6 +1,6 @@
 package com.droal.marvel.db
 
-import com.example.domain.model.Character
+import com.example.domain.model.CharacterDomain
 import droal.shareddb.SelectAllCharacters
 
 class DatabaseSourceImpl(private val database: Database?): IDatabaseSource {
@@ -10,7 +10,7 @@ class DatabaseSourceImpl(private val database: Database?): IDatabaseSource {
         database?.clearDatabase()
     }
 
-    override suspend fun insertCharactersInDB(characters: List<Character>) {
+    override suspend fun insertCharactersInDB(characters: List<CharacterDomain>) {
         database?.insertCharacters(characters)
     }
 

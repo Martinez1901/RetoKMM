@@ -1,10 +1,10 @@
 package com.droal.marvel.db.entity
 
-import com.example.domain.model.Character
+import com.example.domain.model.CharacterDomain
 import droal.shareddb.SelectAllCharacters
 
-fun SelectAllCharacters.toCharacter(): Character {
-    return Character(
+fun SelectAllCharacters.toCharacter(): CharacterDomain {
+    return CharacterDomain(
         id = id.toInt(),
         name = name,
         description = description,

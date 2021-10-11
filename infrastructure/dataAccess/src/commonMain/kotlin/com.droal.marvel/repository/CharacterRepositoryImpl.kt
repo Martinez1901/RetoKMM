@@ -3,7 +3,7 @@ package com.droal.marvel.repository
 import com.droal.marvel.db.IDatabaseSource
 import com.droal.marvel.db.entity.toCharacter
 import com.droal.marvel.network.api.ICharacterAPI
-import com.example.domain.model.Character
+import com.example.domain.model.CharacterDomain
 import com.example.domain.repository.ICharacterRepository
 import com.example.utilities.Response
 
@@ -12,7 +12,7 @@ class CharacterRepositoryImpl (
     private val characterApi: ICharacterAPI
 ): ICharacterRepository {
 
-    override suspend fun getAllCharactersFromDB(): List<Character> {
+    override suspend fun getAllCharactersFromDB(): List<CharacterDomain> {
         return dbDataSource.getAllCharacters().map { it.toCharacter() }
     }
 
@@ -20,11 +20,11 @@ class CharacterRepositoryImpl (
         dbDataSource.clearDatabase()
     }
 
-    override suspend fun insertCharactersInDB(characters: List<Character>) {
+    override suspend fun insertCharactersInDB(characters: List<CharacterDomain>) {
         dbDataSource.insertCharactersInDB(characters)
     }
 
-    override suspend fun getAllCharactersFromNetwork(): Response<List<Character>> {
+    override suspend fun getAllCharactersFromNetwork(): Response<List<CharacterDomain>> {
        return characterApi.getCharacters()
     }
 }

@@ -1,6 +1,6 @@
 package com.droal.marvel.db
 
-import com.example.domain.model.Character
+import com.example.domain.model.CharacterDomain
 import com.squareup.sqldelight.db.SqlDriver
 import droal.shareddb.MarvelDatabase
 import droal.shareddb.SelectAllCharacters
@@ -21,7 +21,7 @@ class Database(sqlDriver: SqlDriver) {
         return dbQuery.selectAllCharacters().executeAsList()
     }
 
-    fun insertCharacters(characters: List<Character>){
+    fun insertCharacters(characters: List<CharacterDomain>){
         dbQuery.transaction {
             characters.forEach { character ->
                 dbQuery.insertCharacter(
