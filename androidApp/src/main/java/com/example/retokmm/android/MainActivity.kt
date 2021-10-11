@@ -2,8 +2,6 @@ package com.example.retokmm.android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.retokmm.Greeting
-import android.widget.TextView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -29,9 +27,5 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
-    }
-
-    fun greet(): String {
-        return Greeting().greeting()
     }
 }

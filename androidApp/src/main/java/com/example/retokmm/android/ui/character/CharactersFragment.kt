@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.example.retokmm.Greeting
 import com.example.retokmm.android.databinding.FragmentCharactersBinding
 import com.example.retokmm.android.ui.character.CharactersAdapter
 import com.example.retokmm.android.ui.character.CharactersViewModel
@@ -42,8 +41,6 @@ class CharactersFragment : Fragment(), ClickCharcter {
         charactersViewModel.listCharacters.observe(requireActivity(), {
             mBinding.recyclerViewCharacters.adapter = CharactersAdapter(it, this)
         })
-
-        mBinding.tv1.text = Greeting().greetingCharacter()
 
     }
 

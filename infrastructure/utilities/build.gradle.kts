@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
-    kotlin("plugin.serialization")
     id("com.android.library")
 }
 
@@ -12,16 +11,16 @@ version = "1.0"
 kotlin {
     android()
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
-            ::iosArm64
-        else
-            ::iosX64
+    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget = when {
+        System.getenv("SDK_NAME")?.startsWith("iphoneos") == true -> ::iosArm64
+        System.getenv("NATIVE_ARCH")?.startsWith("arm") == true -> ::iosSimulatorArm64
+        else -> ::iosX64
+    }
 
     iosTarget("ios") {
         binaries {
             framework {
-                baseName = "domain"
+                baseName = "utilities"
             }
         }
     }
@@ -32,19 +31,9 @@ kotlin {
         ios.deploymentTarget = "14.1"
         // set path to your ios project podfile, e.g. podfile = project.file("../iosApp/Podfile")
     }
-    
+
     sourceSets {
-        val kodeinVersion = "7.1.0"
-        val serializationVersion = "1.2.2"
-        val commonMain by getting {
-            dependencies {
-                //SERIALIZATION
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
-                // KODE IN
-                implementation ("org.kodein.di:kodein-di:$kodeinVersion")
-                implementation(project(":infrastructure:utilities"))
-            }
-        }
+        val commonMain by getting
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -65,7 +54,7 @@ kotlin {
 
 android {
     compileSdk = 31
-    sourceSets["main"].manifest.srcFile("AndroidManifest.xml")
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdk = 22
         targetSdk = 31

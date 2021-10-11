@@ -1,5 +1,5 @@
 Pod::Spec.new do |spec|
-    spec.name                     = 'shared'
+    spec.name                     = 'utilities'
     spec.version                  = '1.0'
     spec.homepage                 = 'Link to the Shared Module homepage'
     spec.source                   = { :git => "Not Published", :tag => "Cocoapods/#{spec.name}/#{spec.version}" }
@@ -7,22 +7,22 @@ Pod::Spec.new do |spec|
     spec.license                  = ''
     spec.summary                  = 'Some description for the Shared Module'
 
-    spec.vendored_frameworks      = "build/cocoapods/framework/shared.framework"
+    spec.vendored_frameworks      = "build/cocoapods/framework/utilities.framework"
     spec.libraries                = "c++"
     spec.module_name              = "#{spec.name}_umbrella"
 
-    spec.ios.deployment_target = '15.0'
+    spec.ios.deployment_target = '14.1'
 
                 
 
     spec.pod_target_xcconfig = {
-        'KOTLIN_PROJECT_PATH' => ':infrastructure:shared',
-        'PRODUCT_MODULE_NAME' => 'shared',
+        'KOTLIN_PROJECT_PATH' => ':infrastructure:utilities',
+        'PRODUCT_MODULE_NAME' => 'utilities',
     }
 
     spec.script_phases = [
         {
-            :name => 'Build shared',
+            :name => 'Build utilities',
             :execution_position => :before_compile,
             :shell_path => '/bin/sh',
             :script => <<-SCRIPT

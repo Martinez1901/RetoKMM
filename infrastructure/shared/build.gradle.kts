@@ -5,6 +5,7 @@ plugins {
     kotlin("native.cocoapods")
     kotlin("plugin.serialization")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
 
 version = "1.0"
@@ -18,18 +19,37 @@ kotlin {
         else
             ::iosX64
 
-    iosTarget("ios") {}
+    iosTarget("ios") {
+        binaries {
+            framework {
+                baseName = "shared"
+            }
+        }
+    }
 
     cocoapods {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
-        ios.deploymentTarget = "14.1"
-        frameworkName = "shared"
-        podfile = project.file("../iosApp/Podfile")
+        ios.deploymentTarget = "15.0"
+        //podfile = project.file("../../iosApp/Podfile")
     }
     
     sourceSets {
-        val commonMain by getting
+        val kodeinVersion = "7.1.0"
+        val mokomvvmVersion = "0.11.0"
+        val sqlDelightVersion: String by project
+        val commonMain by getting {
+            dependencies {
+                implementation ("org.kodein.di:kodein-di:$kodeinVersion")
+                // MOKO - MVVM
+                implementation ("dev.icerock.moko:mvvm:$mokomvvmVersion")
+                implementation("io.ktor:ktor-client-core:1.6.3")
+                implementation("io.ktor:ktor-client-serialization:1.6.3")
+                implementation(project(":infrastructure:utilities"))
+                implementation(project(":infrastructure:domain"))
+                implementation(project(":infrastructure:dataAccess"))
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
@@ -49,10 +69,10 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(31)
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
+    compileSdk = 31
+    sourceSets["main"].manifest.srcFile("AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(22)
-        targetSdkVersion(31)
+        minSdk = 22
+        targetSdk = 31
     }
 }

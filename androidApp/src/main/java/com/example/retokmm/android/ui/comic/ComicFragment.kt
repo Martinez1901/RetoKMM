@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.example.retokmm.Greeting
 import com.example.retokmm.android.Character
 import com.example.retokmm.android.databinding.FragmentComicBinding
 import com.example.retokmm.android.core.showSnackbar
@@ -29,7 +28,6 @@ class ComicFragment : Fragment(), ClickComic {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBinding.tvHome.text = greet()
 
         comicViewModel.onCreate()
 
@@ -41,10 +39,6 @@ class ComicFragment : Fragment(), ClickComic {
             mBinding.recyclerViewComic.adapter = ComicAdapter(it, this)
         })
 
-    }
-
-    fun greet(): String {
-        return Greeting().greetingHome()
     }
 
     override fun onClick(character: Character) {

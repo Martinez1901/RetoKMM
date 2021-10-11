@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.retokmm.Greeting
 import com.example.retokmm.android.databinding.FragmentAccountBinding
 
 
@@ -23,11 +22,8 @@ class AccountFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBinding.tvAccount.text = greet()
 
     }
 
-    fun greet(): String {
-        return Greeting().greetingAccount()
-    }
+
 }

@@ -1,5 +1,4 @@
 import SwiftUI
-import domain
 
 struct ContentView: View {
     

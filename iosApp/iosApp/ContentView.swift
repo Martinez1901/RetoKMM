@@ -1,10 +1,12 @@
 import SwiftUI
+import shared
 
 struct ContentView: View {
-    let test = "fjklafjlad"
+
+    let viewModel = CharactersListViewModel()
 
 	var body: some View {
-		Text(test)
+        Text(viewModel.getData())
 	}
 }
 

@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import com.example.retokmm.Greeting
 import com.example.retokmm.android.R
 import com.example.retokmm.android.databinding.FragmentSearchBinding
 import android.widget.EditText
-import android.widget.TextView
 import androidx.navigation.Navigation
-import com.example.retokmm.android.ui.comic.ComicFragmentDirections
 
 
 class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
@@ -52,10 +49,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
             searchView!!.findViewById(androidx.appcompat.R.id.search_src_text) as EditText
         searchEditText.setTextColor(resources.getColor(R.color.white))
         searchEditText.setHintTextColor(resources.getColor(R.color.white))
-    }
-
-    fun greet(): String {
-        return Greeting().greetingSearch()
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
