@@ -3,13 +3,13 @@ package com.example.retokmm.android.ui.comic
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.retokmm.android.Character
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.io.Serializable
 
 class ComicViewModel: ViewModel() {
 
-    val listComics = MutableLiveData<List<Character>>()
+    val listComics = MutableLiveData<List<Comic>>()
     val isLoading = MutableLiveData<Boolean>()
 
     fun onCreate() {
@@ -21,9 +21,9 @@ class ComicViewModel: ViewModel() {
         }
     }
 
-    fun listComics(): List<Character> {
+    fun listComics(): List<Comic> {
         return listOf(
-            Character(
+            Comic(
                 1,
                 "Superman",
                 thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/d/03/6151f9130899b",
@@ -31,7 +31,7 @@ class ComicViewModel: ViewModel() {
                         "\n" +
                         "Praesent sed lacus posuere, vulputate eros non, iaculis eros. Vestibulum in feugiat libero, vel vulputate velit. Donec arcu ligula, dictum vitae semper vitae, imperdiet eget magna. Maecenas nec sodales tellus. Nam vitae justo aliquam, consectetur justo in, euismod enim. Morbi ac est eget lorem dignissim porttitor. Nulla velit ex, fringilla non purus in, tincidunt pretium nunc."
             ),
-            Character(
+            Comic(
                 2,
                 "Spider Man",
                 thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/c/80/5e3d7536c8ada",
@@ -39,7 +39,7 @@ class ComicViewModel: ViewModel() {
                         "\n" +
                         "Praesent sed lacus posuere, vulputate eros non, iaculis eros. Vestibulum in feugiat libero, vel vulputate velit. Donec arcu ligula, dictum vitae semper vitae, imperdiet eget magna. Maecenas nec sodales tellus. Nam vitae justo aliquam, consectetur justo in, euismod enim. Morbi ac est eget lorem dignissim porttitor. Nulla velit ex, fringilla non purus in, tincidunt pretium nunc."
             ),
-            Character(
+            Comic(
                 3,
                 "Iron Man",
                 thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/9/20/4bc665483c3aa",
@@ -47,7 +47,7 @@ class ComicViewModel: ViewModel() {
                         "\n" +
                         "Praesent sed lacus posuere, vulputate eros non, iaculis eros. Vestibulum in feugiat libero, vel vulputate velit. Donec arcu ligula, dictum vitae semper vitae, imperdiet eget magna. Maecenas nec sodales tellus. Nam vitae justo aliquam, consectetur justo in, euismod enim. Morbi ac est eget lorem dignissim porttitor. Nulla velit ex, fringilla non purus in, tincidunt pretium nunc."
             ),
-            Character(
+            Comic(
                 4,
                 "Acuaman",
                 thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/9/30/4bc64df4105b9",
@@ -55,7 +55,7 @@ class ComicViewModel: ViewModel() {
                         "\n" +
                         "Praesent sed lacus posuere, vulputate eros non, iaculis eros. Vestibulum in feugiat libero, vel vulputate velit. Donec arcu ligula, dictum vitae semper vitae, imperdiet eget magna. Maecenas nec sodales tellus. Nam vitae justo aliquam, consectetur justo in, euismod enim. Morbi ac est eget lorem dignissim porttitor. Nulla velit ex, fringilla non purus in, tincidunt pretium nunc."
             ),
-            Character(
+            Comic(
                 5,
                 "Hulk",
                 thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/4/20/4bc697c680890",
@@ -63,7 +63,7 @@ class ComicViewModel: ViewModel() {
                         "\n" +
                         "Praesent sed lacus posuere, vulputate eros non, iaculis eros. Vestibulum in feugiat libero, vel vulputate velit. Donec arcu ligula, dictum vitae semper vitae, imperdiet eget magna. Maecenas nec sodales tellus. Nam vitae justo aliquam, consectetur justo in, euismod enim. Morbi ac est eget lorem dignissim porttitor. Nulla velit ex, fringilla non purus in, tincidunt pretium nunc."
             ),
-            Character(
+            Comic(
                 6,
                 "Capitan America",
                 thumbnailPath = "http://i.annihil.us/u/prod/marvel/i/mg/f/20/4bc63a47b8dcb",
@@ -74,3 +74,10 @@ class ComicViewModel: ViewModel() {
         )
     }
 }
+
+data class Comic(
+    val id: Int,
+    val name: String,
+    val description: String = "",
+    val thumbnailPath: String,
+): Serializable

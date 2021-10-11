@@ -44,7 +44,7 @@
         tools:layout="@layout/fragment_comic_info" >
         <argument
             android:name="character"
-            app:argType="com.example.retokmm.android.Character"
+            app:argType="com.example.retokmm.android.ui.comic.Comic"
             app:nullable="true"
             android:defaultValue="@null" />
     </fragment>
@@ -52,13 +52,7 @@
         android:id="@+id/characterInfoFragment"
         android:name="com.example.retokmm.android.ui.character_info.CharacterInfoFragment"
         android:label="fragment_character_info"
-        tools:layout="@layout/fragment_character_info" >
-        <argument
-            android:name="character"
-            app:argType="com.example.retokmm.android.Character"
-            app:nullable="true"
-            android:defaultValue="@null" />
-    </fragment>
+        tools:layout="@layout/fragment_character_info" />
     <fragment
         android:id="@+id/searchContentFragment"
         android:name="com.example.retokmm.android.ui.search.SearchContentFragment"

@@ -4,12 +4,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.retokmm.android.Character
 import com.example.retokmm.android.R
 import com.example.retokmm.android.databinding.ItemComicBinding
 import com.example.retokmm.android.core.inflate
 
-class ComicAdapter(var list: List<Character>, val clickComic: ClickComic): RecyclerView.Adapter<ComicAdapter.ViewHolder>(){
+class ComicAdapter(var list: List<Comic>, val clickComic: ClickComic): RecyclerView.Adapter<ComicAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = parent.inflate(R.layout.item_comic)
@@ -30,7 +29,7 @@ class ComicAdapter(var list: List<Character>, val clickComic: ClickComic): Recyc
 
         val binding = ItemComicBinding.bind(view)
 
-        fun bind(comic: Character) {
+        fun bind(comic: Comic) {
             binding.imgComic.load("${comic.thumbnailPath}/portrait_uncanny.jpg")
             binding.tvComics.text = comic.name
         }
@@ -39,5 +38,5 @@ class ComicAdapter(var list: List<Character>, val clickComic: ClickComic): Recyc
 }
 
 interface ClickComic {
-    fun onClick(character: Character)
+    fun onClick(character: Comic)
 }

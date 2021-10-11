@@ -5,12 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.example.retokmm.android.Character
 import com.example.retokmm.android.R
-import com.example.retokmm.android.databinding.ItemCharactersBinding
 import com.example.retokmm.android.core.inflate
+import com.example.retokmm.android.databinding.ItemCharactersBinding
 
-class CharactersAdapter(val list: List<Character>, val clickCharcter: ClickCharcter): RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
+class CharactersAdapter(val list: List<CharacterModel>, val clickCharcter: ClickCharcter): RecyclerView.Adapter<CharactersAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = parent.inflate(R.layout.item_characters)
@@ -31,17 +30,23 @@ class CharactersAdapter(val list: List<Character>, val clickCharcter: ClickCharc
 
         val binding = ItemCharactersBinding.bind(view)
 
-        fun bind(character: Character) {
-            binding.imgCharacter.load("${character.thumbnailPath}/standard_fantastic.jpg") {
+        fun bind(character: CharacterModel) {
+            /*binding.imgCharacter.load("${character.thumbnailPath}/standard_fantastic.jpg") {
+                crossfade(true)
+                placeholder(R.drawable.ic_image)
+                transformations(CircleCropTransformation())
+            }*/
+            binding.imgCharacter.load(character.thumbnailPath) {
                 crossfade(true)
                 placeholder(R.drawable.ic_image)
                 transformations(CircleCropTransformation())
             }
+
             binding.tvNameCharacter.text = character.name
         }
     }
 }
 
 interface ClickCharcter {
-    fun onClick(character: Character)
+    fun onClick(character: CharacterModel)
 }

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.example.retokmm.android.Character
 import com.example.retokmm.android.databinding.FragmentComicBinding
 import com.example.retokmm.android.core.showSnackbar
 
@@ -41,7 +40,7 @@ class ComicFragment : Fragment(), ClickComic {
 
     }
 
-    override fun onClick(character: Character) {
+    override fun onClick(character: Comic) {
         mBinding.root.showSnackbar("Comic seleccionado ${character.name}")
         val action = ComicFragmentDirections.actionComicFragmentToComicInfoFragment(character)
         Navigation.findNavController(mBinding.root).navigate(action)

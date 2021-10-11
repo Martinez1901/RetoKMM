@@ -1,11 +1,3 @@
-//
-//  CreatorsView.swift
-//  iosApp
-//
-//  Created by Juan Cardona on 30/09/21.
-//  Copyright © 2021 orgName. All rights reserved.
-//
-
 import SwiftUI
 
 

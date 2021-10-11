@@ -6,22 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.navigation.fragment.navArgs
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import coil.load
-import com.example.retokmm.android.Character
 import com.example.retokmm.android.R
-import com.example.retokmm.android.core.capitalized
 import com.example.retokmm.android.core.toUpper
 import com.example.retokmm.android.databinding.FragmentComicInfoBinding
-import com.google.android.material.tabs.TabLayout
+import com.example.retokmm.android.ui.comic.Comic
 import java.util.ArrayList
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
 
 
 class ComicInfoFragment : Fragment() {
@@ -54,7 +48,7 @@ class ComicInfoFragment : Fragment() {
         return mBinding.root
     }
 
-    private fun setupViewPager(viewPager: ViewPager2, character: Character) {
+    private fun setupViewPager(viewPager: ViewPager2, character: Comic) {
         val adapter = SectionsPagerAdapter(requireActivity())
         adapter.addFragment(ComicDetailsFragment.newInstance(character.description), "DETAILS")
         adapter.addFragment(ComicCharactersFragment.newInstance("HOME", "HOME"), "CHARACTERS")
