@@ -37,7 +37,6 @@ class CharactersAdapter(private val list: List<CharacterShared>, private val cli
                 placeholder(R.drawable.ic_image)
                 transformations(CircleCropTransformation())
             }*/
-            println(character.thumbnailPath)
             binding.imgCharacter.load(character.thumbnailPath) {
                 crossfade(true)
                 placeholder(R.drawable.ic_image)
