@@ -23,10 +23,10 @@ class ComicsListViewModel : ViewModel() {
 
     private val getAllComicsUseCase by KodeinInjector.instance<GetAllComicsUseCase>()
 
-    fun getInformation() {
+    fun getInformation(updateData: Boolean) {
         viewModelScope.launch {
             Resource.loading(null, null)
-            val response = getAllComicsUseCase.getAllComics(true)
+            val response = getAllComicsUseCase.getAllComics(updateData)
             processComicsListResponse(response)
         }
     }

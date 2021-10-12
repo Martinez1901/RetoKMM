@@ -31,7 +31,7 @@ class ComicFragment : Fragment(), ClickComic {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         comicsListViewModel = ViewModelProvider(this).get(ComicsListViewModel::class.java)
-        comicsListViewModel.getInformation()
+        comicsListViewModel.getInformation(true)
 
         listener()
     }

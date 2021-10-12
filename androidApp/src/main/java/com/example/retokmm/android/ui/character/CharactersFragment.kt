@@ -34,7 +34,7 @@ class CharactersFragment : Fragment(), ClickCharacter {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         charactersListViewModel = ViewModelProvider(this).get(CharactersListViewModel::class.java)
-        charactersListViewModel.getInformation()
+        charactersListViewModel.getInformation(true)
 
         listener()
     }

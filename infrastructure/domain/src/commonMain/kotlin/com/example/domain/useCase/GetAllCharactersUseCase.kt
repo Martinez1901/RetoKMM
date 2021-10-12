@@ -10,15 +10,20 @@ class GetAllCharactersUseCase(
 
     @Throws(Exception::class)
     suspend fun getAllCharacters(updateData: Boolean): Response<List<CharacterDomain>> {
-       return getAllCharactersNetwork()
+        val charactersDB = repository.getAllCharactersFromDB()
+
+        return if (charactersDB.isNotEmpty() && !updateData)
+            Response.Success(charactersDB)
+        else
+            getAllCharactersNetwork()
     }
 
     private suspend fun getAllCharactersNetwork(): Response<List<CharacterDomain>> {
         val response: Response<List<CharacterDomain>> = repository.getAllCharactersFromNetwork()
-        //repository.clearDatabase()
+        repository.clearDatabase()
 
         if (response is Response.Success){
-            //repository.insertCharactersInDB(response.data)
+            repository.insertCharactersInDB(response.data)
         }
         return response
     }

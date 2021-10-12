@@ -22,10 +22,10 @@ class CharactersListViewModel : ViewModel() {
 
     private val getAllCharactersUseCase by KodeinInjector.instance<GetAllCharactersUseCase>()
 
-    fun getInformation() {
+    fun getInformation(updateData: Boolean) {
         viewModelScope.launch {
             Resource.loading(null, null)
-            val response = getAllCharactersUseCase.getAllCharacters(true)
+            val response = getAllCharactersUseCase.getAllCharacters(updateData)
             processCharactersListResponse(response)
         }
     }

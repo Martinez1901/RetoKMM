@@ -9,19 +9,17 @@ import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import coil.load
 import com.example.retokmm.android.R
 import com.example.retokmm.android.core.toUpper
 import com.example.retokmm.android.databinding.FragmentComicInfoBinding
-import com.example.retokmm.android.ui.comic.Comic
+import com.example.retokmm.model.ComicShared
 import java.util.ArrayList
-import com.google.android.material.tabs.TabLayoutMediator
 
 
 class ComicInfoFragment : Fragment() {
 
     private lateinit var mBinding: FragmentComicInfoBinding
-    private val args: ComicInfoFragmentArgs by navArgs()
+    //private val args: ComicInfoFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +33,7 @@ class ComicInfoFragment : Fragment() {
             getString(R.string.Creators).toUpper()
         )
 
-        with(args.character!!) {
+        /*with(args.character!!) {
             mBinding.imgToolbarComic.load("${thumbnailPath}/standard_fantastic.jpg")
             mBinding.tvNameComic.text = name
 
@@ -43,12 +41,12 @@ class ComicInfoFragment : Fragment() {
             TabLayoutMediator(mBinding.tabLayout, mBinding.viewPager) { tab, position ->
                 tab.text = listTitlesTabs[position]
             }.attach()
-        }
+        }*/
 
         return mBinding.root
     }
 
-    private fun setupViewPager(viewPager: ViewPager2, character: Comic) {
+    /*private fun setupViewPager(viewPager: ViewPager2, character: ComicShared) {
         val adapter = SectionsPagerAdapter(requireActivity())
         adapter.addFragment(ComicDetailsFragment.newInstance(character.description), "DETAILS")
         adapter.addFragment(ComicCharactersFragment.newInstance("HOME", "HOME"), "CHARACTERS")
@@ -71,7 +69,7 @@ class ComicInfoFragment : Fragment() {
             mFragmentList.add(fragment)
             mFragmentTitleList.add(title)
         }
-    }
+    }*/
 
 
 }
