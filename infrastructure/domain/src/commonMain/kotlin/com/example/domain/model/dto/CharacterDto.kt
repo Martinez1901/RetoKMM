@@ -1,5 +1,6 @@
 package com.example.domain.model.dto
 
+import com.example.domain.https
 import com.example.domain.model.CharacterDomain
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
@@ -15,7 +16,7 @@ data class CharacterDto(
     @Transient
     val urls: String = "",
     @Transient
-    val comics:String = "",
+    val comics: String = "",
     @Transient
     val stories: String = "",
     @Transient
@@ -24,15 +25,15 @@ data class CharacterDto(
     val series: String = "",
 )
 
-fun CharacterDto.toCharacter(): CharacterDomain{
+fun CharacterDto.toCharacter(): CharacterDomain {
     return CharacterDomain(
         id = id,
         name = name,
         description = description,
         modified = modified,
-        resourceURI = resourceURI,
+        resourceURI = resourceURI?.https(),
         //Acá se construye el path de la miniatura
-        thumbnailPath = thumbnail.path+"."+thumbnail.extension,
+        thumbnailPath = thumbnail.path.https() + "." + thumbnail.extension,
         urls = urls,
         comics = comics,
         stories = stories,

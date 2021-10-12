@@ -2,58 +2,30 @@ package com.example.retokmm.android
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
-import com.example.retokmm.model.CharacterView
-import com.example.retokmm.viewModel.*
-import kotlin.random.Random
-
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.example.retokmm.android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var charactersListViewModel: CharactersListViewModel
-    private lateinit var charactersListObserver: (state: Resource<List<CharacterView>>) -> Unit
+    private lateinit var mBinding: ActivityMainBinding
+    private lateinit var navController : NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        charactersListViewModel = ViewModelProvider(this).get(CharactersListViewModel::class.java)
-        charactersListViewModel.getInformation()
-        listener()
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
+
+        val bottomNavigationView = mBinding.bottomNavigationView
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navController = navHostFragment.navController
+
+        bottomNavigationView.setupWithNavController(navController)
 
     }
 
-    private fun listener() {
-        charactersListObserver =
-            { getCharacterListState(charactersListViewModel.characters.value) }
-        charactersListViewModel.characters.addObserver(charactersListObserver)
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
-    private fun getCharacterListState(result: Resource<List<CharacterView>>) {
-        when (result.status) {
-            Status.SUCCESS -> {
-                //onSuccessGetGitHubList(response.data)
-                result.data?.let {
-                    val tv: TextView = findViewById(R.id.text_view)
-                    tv.text = it[Random.nextInt(0, it.size - 1)].name
-                }/* ?: run {
-                    Toast.makeText(this@MainActivity,"Vacio",Toast.LENGTH_LONG).show()
-                }*/
-            }
-
-            Status.LOADING -> {
-            }
-
-            Status.ERROR -> {
-
-            }
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        charactersListViewModel.characters.removeObserver { charactersListObserver }
-    }
-
 }

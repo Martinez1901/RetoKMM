@@ -43,8 +43,8 @@ kotlin {
                 implementation ("org.kodein.di:kodein-di:$kodeinVersion")
                 // MOKO - MVVM
                 implementation ("dev.icerock.moko:mvvm:$mokomvvmVersion")
-                implementation("io.ktor:ktor-client-core:1.6.3")
-                implementation("io.ktor:ktor-client-serialization:1.6.3")
+                implementation("io.ktor:ktor-client-core:1.6.4")
+                implementation("io.ktor:ktor-client-serialization:1.6.4")
                 implementation(project(":infrastructure:utilities"))
                 implementation(project(":infrastructure:domain"))
                 implementation(project(":infrastructure:dataAccess"))

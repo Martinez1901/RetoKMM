@@ -1,6 +1,6 @@
 package com.example.retokmm.model
 
-data class CharacterView(
+data class CharacterShared(
     val id: Int,
     val name: String,
     val description: String,
