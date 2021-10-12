@@ -37,7 +37,7 @@ struct CharactersView: View {
                     print("default")
                 }
             }
-            viewModel.getInformation()
+            viewModel.getInformation(updateData: true)
         }
         
     }
