@@ -3,14 +3,14 @@ package com.example.retokmm.viewModel
 import com.example.domain.model.CharacterDomain
 import com.example.domain.useCase.GetAllCharactersUseCase
 import com.example.retokmm.di.KodeinInjector
-import com.example.retokmm.fromListDomainToListView
+import com.example.retokmm.util.fromListDomainToListView
 import com.example.retokmm.model.CharacterShared
+import com.example.retokmm.util.Resource
 import com.example.utilities.Response
 import dev.icerock.moko.mvvm.livedata.LiveData
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.kodein.di.instance
 

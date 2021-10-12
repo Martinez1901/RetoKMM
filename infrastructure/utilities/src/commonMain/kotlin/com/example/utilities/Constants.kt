@@ -6,4 +6,5 @@ object Constants {
     const val TS = "1"
     const val API_KEY = "a598246bddf59765fc76948d1f952f7b"
     const val CHARACTERS = "characters"
+    const val COMICS = "comics"
 }

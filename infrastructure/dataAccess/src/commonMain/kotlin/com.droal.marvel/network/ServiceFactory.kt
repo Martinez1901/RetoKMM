@@ -1,6 +1,5 @@
 package com.droal.marvel.network
 
-import com.example.utilities.Constants
 import com.example.utilities.Constants.API_KEY
 import com.example.utilities.Constants.BASE_URL
 import com.example.utilities.Constants.HASH
@@ -12,7 +11,6 @@ import kotlinx.serialization.json.Json
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.parameter
 import io.ktor.client.request.url
-
 
 class ServiceFactory {
 

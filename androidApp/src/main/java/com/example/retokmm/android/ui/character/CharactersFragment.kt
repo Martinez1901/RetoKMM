@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.retokmm.android.core.showSnackbar
 import com.example.retokmm.android.databinding.FragmentCharactersBinding
 import com.example.retokmm.model.CharacterShared
+import com.example.retokmm.util.Resource
+import com.example.retokmm.util.Status
 import com.example.retokmm.viewModel.*
 import com.google.gson.Gson
 

@@ -1,4 +1,4 @@
-package com.example.retokmm.viewModel
+package com.example.retokmm.util
 
 enum class Status {
     SUCCESS,

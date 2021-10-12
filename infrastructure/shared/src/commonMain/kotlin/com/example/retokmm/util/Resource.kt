@@ -1,4 +1,4 @@
-package com.example.retokmm.viewModel
+package com.example.retokmm.util
 
 data class Resource<out T>(val status: Status, val data: T?, val code: Int?, val message: String?) {
     companion object {
