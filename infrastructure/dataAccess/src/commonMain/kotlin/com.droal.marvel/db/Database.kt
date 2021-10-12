@@ -16,6 +16,7 @@ class Database(sqlDriver: SqlDriver) {
         dbQuery.transaction {
             dbQuery.removeAllThumbnail()
             dbQuery.removeAllCharacters()
+            dbQuery.removeAllComics()
         }
     }
 
