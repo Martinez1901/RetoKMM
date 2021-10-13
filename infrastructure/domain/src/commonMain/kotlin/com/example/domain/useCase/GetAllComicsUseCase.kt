@@ -27,9 +27,4 @@ class GetAllComicsUseCase(
         }
         return response
     }
-
-    suspend fun getAllComicsByTitle(comicTitle: String): Response<List<ComicDomain>> {
-        val comicsDB = repository.getComicsByTitle(comicTitle)
-        return Response.Success(comicsDB)
-    }
 }

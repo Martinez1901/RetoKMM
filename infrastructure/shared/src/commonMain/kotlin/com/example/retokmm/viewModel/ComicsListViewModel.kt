@@ -2,6 +2,7 @@ package com.example.retokmm.viewModel
 
 import com.example.domain.model.ComicDomain
 import com.example.domain.useCase.GetAllComicsUseCase
+import com.example.domain.useCase.SearchComicsUseCase
 import com.example.retokmm.di.KodeinInjector
 import com.example.retokmm.model.ComicShared
 import com.example.retokmm.util.Resource
@@ -21,6 +22,7 @@ class ComicsListViewModel : ViewModel() {
     val comics: LiveData<Resource<List<ComicShared>>> get() = _comics
 
     private val getAllComicsUseCase by KodeinInjector.instance<GetAllComicsUseCase>()
+    private val searchComicsUseCase by KodeinInjector.instance<SearchComicsUseCase>()
 
     fun getInformation(updateData: Boolean) {
         viewModelScope.launch {
@@ -36,7 +38,7 @@ class ComicsListViewModel : ViewModel() {
                 try {
                     Resource.loading(null, null)
                     delay(2000)
-                    val response = getAllComicsUseCase.getAllComicsByTitle(comicTitle)
+                    val response = searchComicsUseCase.getAllComicsByTitle(comicTitle)
                     processComicsListResponse(response)
                 } catch (e: Exception) {
                     e.printStackTrace()
