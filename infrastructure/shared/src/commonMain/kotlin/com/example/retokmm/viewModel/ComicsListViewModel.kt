@@ -6,13 +6,12 @@ import com.example.retokmm.di.KodeinInjector
 import com.example.retokmm.model.ComicShared
 import com.example.retokmm.util.Resource
 import com.example.retokmm.util.fromListDomainComicToListView
-import com.example.retokmm.util.fromListDomainToListView
 import com.example.utilities.Response
+import dev.icerock.moko.mvvm.UI
 import dev.icerock.moko.mvvm.livedata.LiveData
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.kodein.di.instance
 
 class ComicsListViewModel : ViewModel() {
@@ -28,6 +27,21 @@ class ComicsListViewModel : ViewModel() {
             Resource.loading(null, null)
             val response = getAllComicsUseCase.getAllComics(updateData)
             processComicsListResponse(response)
+        }
+    }
+
+    fun searchComics(comicTitle: String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.UI) {
+                try {
+                    Resource.loading(null, null)
+                    delay(2000)
+                    val response = getAllComicsUseCase.getAllComicsByTitle(comicTitle)
+                    processComicsListResponse(response)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
     }
 
@@ -49,5 +63,4 @@ class ComicsListViewModel : ViewModel() {
         super.onCleared()
         viewModelScope.cancel()
     }
-
 }

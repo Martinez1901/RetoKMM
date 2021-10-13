@@ -12,4 +12,6 @@ interface IComicsRepository  {
     suspend fun insertComicInDB(comics: List<ComicDomain>)
 
     suspend fun getAllComicsFromNetwork(): Response<List<ComicDomain>>
+
+    suspend fun getComicsByTitle(comicTitle: String): List<ComicDomain>
 }
