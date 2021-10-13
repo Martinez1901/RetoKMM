@@ -2,44 +2,55 @@ import SwiftUI
 import shared
 
 struct CharactersView: View {
-    private let viewModel = CharactersListViewModel()
+    @State var viewModel : CharactersListViewModel? = nil
     @State var characters = [CharacterShared]()
+    @State var isLoading = false
+    
     var body: some View {
-        List {
-            Text("Characters")
-                .fontWeight(.bold)
-                .font(.system(size: 20))
-                .frame(minWidth: .zero, maxWidth: .infinity, alignment: .leading)
-            
-            if(!characters.isEmpty){
-                ForEach(characters, id: \.self) { item in
-                    CharacterView(data: item)
+        let observer: (Resource<NSArray>?) -> Void = { (data) in
+            guard let res = data else { return }
+            switch res.status {
+            case  Status.success :
+                isLoading = false
+                if let list = res.data {
+                    characters = list as! [CharacterShared]
                 }
+            case Status.loading:
+                isLoading = true
+            case  Status.error :
+                isLoading = false
+            default:
+                isLoading = false
             }
         }
-        .listStyle(SidebarListStyle())
-        .onAppear {
-            viewModel.characters.addObserver{ (data) in
-                guard let res = data else { return }
-                switch res.status {
-                case  Status.success :
-                    if let list = res.data {
-                        characters = list as! [CharacterShared]
-                        //                           let number : Int = Int.random(in: 0...characters.count-1)
-                        //                           let character = characters[number] as! CharacterShared
-                        //                           name = character.name
+        VStack(alignment: .center, spacing: nil) {
+            List {
+                Title(title: "Characters")
+                if isLoading {
+                    Spacer()
+                    ProgressViewCustom()
+                }else{
+                    if(!characters.isEmpty){
+                        LazyVStack(){
+                            ForEach(characters, id: \.self) { item in
+                                CharacterView(data: item)
+                            }
+                        }
+                    }else{
+                        TextEmptyView()
                     }
-                case  Status.loading :
-                    print("loading")
-                case  Status.error :
-                    print("error")
-                default:
-                    print("default")
                 }
             }
-            viewModel.getInformation(updateData: true)
+            .listStyle(SidebarListStyle())
         }
-        
+        .onAppear {
+            viewModel = CharactersListViewModel()
+            viewModel?.characters.addObserver(observer: observer)
+            viewModel?.getInformation(updateData: false)
+        }
+        .onDisappear{
+            viewModel?.characters.removeObserver(observer: observer)
+        }
     }
 }
 
