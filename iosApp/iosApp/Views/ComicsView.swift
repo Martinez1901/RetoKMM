@@ -54,7 +54,7 @@ struct ComicsView: View {
         .onAppear{
             viewModel = ComicsListViewModel()
             viewModel?.comics.addObserver(observer: observer)
-            viewModel?.getInformation(updateData: false)
+            viewModel?.getInformation(updateData: true)
         }
         .onDisappear{
             viewModel?.comics.removeObserver(observer: observer)

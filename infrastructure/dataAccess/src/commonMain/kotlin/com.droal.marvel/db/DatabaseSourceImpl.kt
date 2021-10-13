@@ -7,9 +7,12 @@ import droal.shareddb.SelectAllComics
 
 class DatabaseSourceImpl(private val database: Database?): IDatabaseSource {
 
+    override suspend fun clearAllCharacters() {
+        database?.clearAllCharacters()
+    }
 
-    override suspend fun clearDatabase() {
-        database?.clearDatabase()
+    override suspend fun clearAllComics() {
+        database?.clearAllComics()
     }
 
     override suspend fun insertCharactersInDB(characters: List<CharacterDomain>) {

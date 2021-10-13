@@ -46,7 +46,7 @@ struct CharactersView: View {
         .onAppear {
             viewModel = CharactersListViewModel()
             viewModel?.characters.addObserver(observer: observer)
-            viewModel?.getInformation(updateData: false)
+            viewModel?.getInformation(updateData: true)
         }
         .onDisappear{
             viewModel?.characters.removeObserver(observer: observer)

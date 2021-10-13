@@ -6,7 +6,8 @@ import droal.shareddb.SelectAllCharacters
 import droal.shareddb.SelectAllComics
 
 interface IDatabaseSource {
-    suspend fun clearDatabase()
+    suspend fun clearAllCharacters()
+    suspend fun clearAllComics()
     suspend fun insertCharactersInDB(characters: List<CharacterDomain>)
     suspend fun getAllCharacters(): List<SelectAllCharacters>
     suspend fun insertComicsInDB(comics: List<ComicDomain>)

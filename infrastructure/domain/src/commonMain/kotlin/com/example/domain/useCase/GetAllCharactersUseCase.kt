@@ -20,7 +20,7 @@ class GetAllCharactersUseCase(
 
     private suspend fun getAllCharactersNetwork(): Response<List<CharacterDomain>> {
         val response: Response<List<CharacterDomain>> = repository.getAllCharactersFromNetwork()
-        repository.clearDatabase()
+        repository.clearAllCharacters()
 
         if (response is Response.Success){
             repository.insertCharactersInDB(response.data)

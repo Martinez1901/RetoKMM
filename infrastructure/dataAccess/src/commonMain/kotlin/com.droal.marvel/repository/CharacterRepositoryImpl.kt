@@ -16,8 +16,12 @@ class CharacterRepositoryImpl (
         return dbDataSource.getAllCharacters().map { it.toCharacter() }
     }
 
-    override suspend fun clearDatabase() {
-        dbDataSource.clearDatabase()
+    override suspend fun clearAllCharacters() {
+        dbDataSource.clearAllCharacters()
+    }
+
+    override suspend fun clearAllComics() {
+        dbDataSource.clearAllComics()
     }
 
     override suspend fun insertCharactersInDB(characters: List<CharacterDomain>) {

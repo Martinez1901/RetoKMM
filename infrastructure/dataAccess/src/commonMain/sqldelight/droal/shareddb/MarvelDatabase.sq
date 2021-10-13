@@ -34,8 +34,9 @@ VALUES(?, ?);
 removeAllCharacters:
 DELETE FROM Character_Entity;
 
-removeAllThumbnail:
-DELETE FROM Thumbnail_Entity;
+removeAllThumbnailCharacters:
+DELETE FROM Thumbnail_Entity
+WHERE idThumb IN (SELECT thumbnailId FROM Character_Entity);
 
 selectAllCharacters:
 SELECT Character_Entity.*, Thumbnail_Entity.*
@@ -53,6 +54,10 @@ VALUES(?, ?,?, ?, ?, ?, ?);
 
 removeAllComics:
 DELETE FROM Comic_Entity;
+
+removeAllThumbnailComics:
+DELETE FROM Thumbnail_Entity
+WHERE idThumb IN (SELECT thumbnailId FROM Comic_Entity);
 
 selectAllComics:
 SELECT Comic_Entity.*, Thumbnail_Entity.*

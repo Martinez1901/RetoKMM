@@ -12,10 +12,16 @@ class Database(sqlDriver: SqlDriver) {
     private val database = MarvelDatabase(sqlDriver)
     private val dbQuery = database.marvelDatabaseQueries
 
-    fun clearDatabase(){
+    fun clearAllCharacters(){
         dbQuery.transaction {
-            dbQuery.removeAllThumbnail()
+            dbQuery.removeAllThumbnailCharacters()
             dbQuery.removeAllCharacters()
+        }
+    }
+
+    fun clearAllComics(){
+        dbQuery.transaction {
+            dbQuery.removeAllThumbnailComics()
             dbQuery.removeAllComics()
         }
     }

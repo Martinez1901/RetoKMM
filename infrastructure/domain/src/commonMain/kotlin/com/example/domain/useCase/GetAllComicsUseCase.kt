@@ -20,7 +20,7 @@ class GetAllComicsUseCase(
 
     private suspend fun getAllComicsNetwork(): Response<List<ComicDomain>> {
         val response: Response<List<ComicDomain>> = repository.getAllComicsFromNetwork()
-        repository.clearDatabase()
+        repository.clearAllComics()
 
         if (response is Response.Success){
             repository.insertComicInDB(response.data)
