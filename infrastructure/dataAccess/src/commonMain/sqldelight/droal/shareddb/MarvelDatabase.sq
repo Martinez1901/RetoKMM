@@ -63,3 +63,13 @@ selectAllComics:
 SELECT Comic_Entity.*, Thumbnail_Entity.*
 FROM Comic_Entity
 INNER JOIN Thumbnail_Entity ON Thumbnail_Entity.idThumb == Comic_Entity.thumbnailId;
+
+searchComicsByTitle:
+SELECT Comic_Entity.*, Thumbnail_Entity.*
+FROM Comic_Entity
+INNER JOIN Thumbnail_Entity ON Thumbnail_Entity.idThumb == Comic_Entity.thumbnailId
+WHERE Comic_Entity.title LIKE '%' || ? || '%';
+
+
+
+

@@ -7,10 +7,10 @@ import com.example.domain.model.ComicDomain
 import com.example.domain.repository.IComicsRepository
 import com.example.utilities.Response
 
-class ComicsRepositoryImpl (
+class ComicsRepositoryImpl(
     private val dbDataSource: IDatabaseSource,
     private val comicsApi: IComicsAPI
-): IComicsRepository {
+) : IComicsRepository {
 
     override suspend fun getAllComicsFromDB(): List<ComicDomain> {
         return dbDataSource.getAllComics().map { it.toComic() }
@@ -29,6 +29,10 @@ class ComicsRepositoryImpl (
     }
 
     override suspend fun getAllComicsFromNetwork(): Response<List<ComicDomain>> {
-       return comicsApi.getComics()
+        return comicsApi.getComics()
+    }
+
+    override suspend fun getComicsByTitle(comicTitle: String): List<ComicDomain> {
+        return dbDataSource.searchComicsByTitle(comicTitle).map { it.toComic() }
     }
 }

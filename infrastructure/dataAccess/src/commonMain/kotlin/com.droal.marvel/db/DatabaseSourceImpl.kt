@@ -2,10 +2,11 @@ package com.droal.marvel.db
 
 import com.example.domain.model.CharacterDomain
 import com.example.domain.model.ComicDomain
+import droal.shareddb.SearchComicsByTitle
 import droal.shareddb.SelectAllCharacters
 import droal.shareddb.SelectAllComics
 
-class DatabaseSourceImpl(private val database: Database?): IDatabaseSource {
+class DatabaseSourceImpl(private val database: Database?) : IDatabaseSource {
 
     override suspend fun clearAllCharacters() {
         database?.clearAllCharacters()
@@ -29,5 +30,9 @@ class DatabaseSourceImpl(private val database: Database?): IDatabaseSource {
 
     override suspend fun getAllComics(): List<SelectAllComics> {
         return database?.getAllComics() ?: emptyList()
+    }
+
+    override suspend fun searchComicsByTitle(comicTitle: String): List<SearchComicsByTitle> {
+        return database?.searchComicsByTitle(comicTitle) ?: emptyList()
     }
 }

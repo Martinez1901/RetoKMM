@@ -22,10 +22,9 @@ class GetAllComicsUseCase(
         val response: Response<List<ComicDomain>> = repository.getAllComicsFromNetwork()
         repository.clearAllComics()
 
-        if (response is Response.Success){
+        if (response is Response.Success) {
             repository.insertComicInDB(response.data)
         }
         return response
     }
-
 }
