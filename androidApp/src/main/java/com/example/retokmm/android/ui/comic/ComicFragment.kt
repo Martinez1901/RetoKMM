@@ -26,7 +26,7 @@ class ComicFragment : Fragment(), ClickComic {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         mBinding = FragmentComicBinding.inflate(inflater, container, false)
         return mBinding.root
     }
@@ -34,7 +34,7 @@ class ComicFragment : Fragment(), ClickComic {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         comicsListViewModel = ViewModelProvider(this).get(ComicsListViewModel::class.java)
-        comicsListViewModel.getInformation(true)
+        comicsListViewModel.getInformation(false)
 
         listener()
     }
@@ -54,7 +54,6 @@ class ComicFragment : Fragment(), ClickComic {
                     mBinding.recyclerViewComic.adapter = ComicAdapter(it, this)
                 }
             }
-
             Status.LOADING -> {
                 mBinding.progressBar.isVisible = true
             }

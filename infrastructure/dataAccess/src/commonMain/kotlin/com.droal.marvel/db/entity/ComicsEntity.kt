@@ -1,6 +1,7 @@
 package com.droal.marvel.db.entity
 
 import com.example.domain.model.ComicDomain
+import droal.shareddb.SearchComicsByTitle
 import droal.shareddb.SelectAllComics
 
 fun SelectAllComics.toComic(): ComicDomain {
@@ -15,5 +16,20 @@ fun SelectAllComics.toComic(): ComicDomain {
         pageCount = 0
     )
 }
+
+fun SearchComicsByTitle.toComic(): ComicDomain {
+    return ComicDomain(
+        id = id.toInt(),
+        digitalId = digitalId.toInt(),
+        title = title,
+        description = description,
+        modified = modified,
+        resourceURI = resourceURI,
+        thumbnailPath = path,
+        pageCount = 0
+    )
+}
+
+
 
 

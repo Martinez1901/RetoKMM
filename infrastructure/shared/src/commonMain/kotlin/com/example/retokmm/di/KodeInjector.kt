@@ -16,6 +16,7 @@ import com.example.domain.repository.ICharacterRepository
 import com.example.domain.repository.IComicsRepository
 import com.example.domain.useCase.GetAllCharactersUseCase
 import com.example.domain.useCase.GetAllComicsUseCase
+import com.example.domain.useCase.SearchComicsUseCase
 import kotlinx.coroutines.Dispatchers
 import org.kodein.di.*
 import kotlin.coroutines.CoroutineContext
@@ -28,7 +29,7 @@ val KodeinInjector = DI{
     /**
      * DATABASE
      */
-    bind<IDatabaseSource>() with provider { DatabaseSourceImpl(
+    bind<IDatabaseSource>() with singleton { DatabaseSourceImpl(
         DatabaseCreator.getDataBase(
         InjectorCommon.context)) }
     /**
@@ -66,6 +67,7 @@ val KodeinInjector = DI{
     /**
      * USECASES
      */
-    bind<GetAllCharactersUseCase>() with singleton { GetAllCharactersUseCase(instance()) }
-    bind<GetAllComicsUseCase>() with singleton { GetAllComicsUseCase(instance()) }
+    bind<GetAllCharactersUseCase>() with provider { GetAllCharactersUseCase(instance()) }
+    bind<GetAllComicsUseCase>() with provider { GetAllComicsUseCase(instance()) }
+    bind<SearchComicsUseCase>() with provider { SearchComicsUseCase(instance()) }
 }

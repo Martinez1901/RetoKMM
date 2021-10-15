@@ -2,17 +2,17 @@ package com.example.retokmm.viewModel
 
 import com.example.domain.model.ComicDomain
 import com.example.domain.useCase.GetAllComicsUseCase
+import com.example.domain.useCase.SearchComicsUseCase
 import com.example.retokmm.di.KodeinInjector
 import com.example.retokmm.model.ComicShared
 import com.example.retokmm.util.Resource
 import com.example.retokmm.util.fromListDomainComicToListView
-import com.example.retokmm.util.fromListDomainToListView
 import com.example.utilities.Response
+import dev.icerock.moko.mvvm.UI
 import dev.icerock.moko.mvvm.livedata.LiveData
 import dev.icerock.moko.mvvm.livedata.MutableLiveData
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import org.kodein.di.instance
 
 class ComicsListViewModel : ViewModel() {
@@ -22,12 +22,28 @@ class ComicsListViewModel : ViewModel() {
     val comics: LiveData<Resource<List<ComicShared>>> get() = _comics
 
     private val getAllComicsUseCase by KodeinInjector.instance<GetAllComicsUseCase>()
+    private val searchComicsUseCase by KodeinInjector.instance<SearchComicsUseCase>()
 
     fun getInformation(updateData: Boolean) {
         viewModelScope.launch {
             Resource.loading(null, null)
             val response = getAllComicsUseCase.getAllComics(updateData)
             processComicsListResponse(response)
+        }
+    }
+
+    fun searchComics(comicTitle: String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.UI) {
+                try {
+                    Resource.loading(null, null)
+                    delay(2000)
+                    val response = searchComicsUseCase.getAllComicsByTitle(comicTitle)
+                    processComicsListResponse(response)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
         }
     }
 
@@ -49,5 +65,4 @@ class ComicsListViewModel : ViewModel() {
         super.onCleared()
         viewModelScope.cancel()
     }
-
 }
