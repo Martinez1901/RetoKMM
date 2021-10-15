@@ -39,7 +39,7 @@ class Database(sqlDriver: SqlDriver) {
                     description= character.description,
                     modified= character.modified,
                     resourceURI= character.resourceURI,
-                    thumbnailId=character.id.toString()
+                    thumbnailId=character.id.toString(),
                 )
                 dbQuery.insertThumbnail(
                     idThumb= character.id.toString(),
@@ -63,7 +63,8 @@ class Database(sqlDriver: SqlDriver) {
                     description= comic.description,
                     modified= comic.modified,
                     resourceURI= comic.resourceURI,
-                    thumbnailId=comic.id.toString()
+                    thumbnailId=comic.id.toString(),
+                    pageCount = comic.pageCount.toLong()
                 )
                 dbQuery.insertThumbnail(
                     idThumb= comic.id.toString(),

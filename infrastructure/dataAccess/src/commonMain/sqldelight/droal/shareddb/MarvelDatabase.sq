@@ -14,7 +14,8 @@ CREATE TABLE Comic_Entity (
     description TEXT,
     modified TEXT,
     resourceURI TEXT,
-    thumbnailId TEXT NOT NULL
+    thumbnailId TEXT NOT NULL,
+    pageCount INTEGER
 );
 
 CREATE TABLE Thumbnail_Entity(
@@ -49,8 +50,8 @@ WHERE id = ?;
 
 -- Comics --
 insertComic:
-INSERT INTO Comic_Entity(id, digitalId, title, description, modified, resourceURI, thumbnailId)
-VALUES(?, ?,?, ?, ?, ?, ?);
+INSERT INTO Comic_Entity(id, digitalId, title, description, modified, resourceURI, thumbnailId, pageCount)
+VALUES(?, ?,?, ?, ?, ?, ?, ?);
 
 removeAllComics:
 DELETE FROM Comic_Entity;

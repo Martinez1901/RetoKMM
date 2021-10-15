@@ -54,7 +54,7 @@ class ComicInfoFragment : Fragment() {
         val adapter = SectionsPagerAdapter(requireActivity())
         adapter.addFragment(ComicDetailsFragment.newInstance(comic.description), "DETAILS")
         adapter.addFragment(ComicCharactersFragment.newInstance("HOME", "HOME"), "CHARACTERS")
-        adapter.addFragment(ComicCreatorFragment.newInstance("HOME", "HOME"), "CREATOR")
+        adapter.addFragment(ComicCreatorFragment.newInstance(Gson().toJson(comic)), "MORE INFO")
         viewPager.adapter = adapter
     }
 
