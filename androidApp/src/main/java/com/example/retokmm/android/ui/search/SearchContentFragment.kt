@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.example.retokmm.android.core.showSnackbar
 import com.example.retokmm.android.databinding.FragmentSearchContentBinding
 import com.example.retokmm.util.Resource
 
@@ -26,7 +27,6 @@ abstract class SearchContentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mBinding.tieSearch.requestFocus()
         mBinding.btnSearch.setOnClickListener {
-            mBinding.progressBar.isVisible = true
             clickSearch(mBinding.tieSearch.text.toString())
         }
     }

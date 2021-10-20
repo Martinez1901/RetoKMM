@@ -19,7 +19,7 @@ import com.example.retokmm.viewModel.CharactersViewModel
 import com.example.retokmm.viewModel.ComicsViewModel
 
 
-class SearchCharacterFragment : SearchContentFragment(),ClickCharacter {
+class SearchCharacterFragment : SearchContentFragment(), ClickCharacter {
 
     private lateinit var charactersViewModel: CharactersViewModel
     private lateinit var charactersObserver: (state: Resource<List<CharacterShared>>) -> Unit
@@ -28,8 +28,8 @@ class SearchCharacterFragment : SearchContentFragment(),ClickCharacter {
         super.onViewCreated(view, savedInstanceState)
         mBinding.recyclerViewSearch.layoutManager = LinearLayoutManager(context)
         charactersViewModel = ViewModelProvider(this).get(CharactersViewModel::class.java)
-        charactersViewModel.searchCharacter("")
         listener()
+        mBinding.progressBar.isVisible = false
     }
 
     override fun listener() {
@@ -40,7 +40,11 @@ class SearchCharacterFragment : SearchContentFragment(),ClickCharacter {
     }
 
     override fun clickSearch(name: String) {
-        charactersViewModel.searchCharacter(name)
+        if (name.isEmpty()) {
+            mBinding.root.showSnackbar("Favor ingresa el nombre de un character.")
+        } else {
+            charactersViewModel.searchCharacter(name)
+        }
     }
 
     override fun <T> getDataListState(result: Resource<List<T>>) {
@@ -48,23 +52,26 @@ class SearchCharacterFragment : SearchContentFragment(),ClickCharacter {
             Status.SUCCESS -> {
                 mBinding.progressBar.isVisible = false
                 if (result.data.isNullOrEmpty()) {
+                    mBinding.recyclerViewSearch.adapter =
+                        CharactersAdapter(emptyList(), this@SearchCharacterFragment)
                     mBinding.root.showSnackbar("Character no encontrado")
                 } else {
                     result.data!!.filterIsInstance<CharacterShared>().apply {
-                        mBinding.recyclerViewSearch.adapter = CharactersAdapter(this, this@SearchCharacterFragment)
+                        mBinding.recyclerViewSearch.adapter =
+                            CharactersAdapter(this, this@SearchCharacterFragment)
                     }
                 }
 
             }
             Status.LOADING -> {
-                mBinding.progressBar.isVisible = true
+                //  mBinding.progressBar.isVisible = true
             }
 
             Status.ERROR -> {
                 mBinding.progressBar.isVisible = false
             }
         }
-    } 
+    }
 
     override fun onDestroy() {
         super.onDestroy()
