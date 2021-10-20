@@ -6,22 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.retokmm.android.core.showSnackbar
 import com.example.retokmm.android.databinding.FragmentSearchContentBinding
-import com.example.retokmm.android.ui.comic.ClickComic
-import com.example.retokmm.android.ui.comic.ComicAdapter
-import com.example.retokmm.model.ComicShared
 import com.example.retokmm.util.Resource
-import com.example.retokmm.util.Status
-import com.example.retokmm.viewModel.ComicsListViewModel
 
 
-class SearchContentFragment : Fragment(), ClickComic {
+abstract class SearchContentFragment : Fragment() {
 
-    private lateinit var mBinding: FragmentSearchContentBinding
-    private lateinit var comicsListViewModel: ComicsListViewModel
-    private lateinit var comicsListObserver: (state: Resource<List<ComicShared>>) -> Unit
+    open lateinit var mBinding: FragmentSearchContentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,52 +25,15 @@ class SearchContentFragment : Fragment(), ClickComic {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.tieSearch.requestFocus()
-
-        comicsListViewModel = ViewModelProvider(this).get(ComicsListViewModel::class.java)
-        comicsListViewModel.searchComics("")
-
         mBinding.btnSearch.setOnClickListener {
             mBinding.progressBar.isVisible = true
-            comicsListViewModel.searchComics(mBinding.tieSearch.text.toString())
-        }
-
-        listener()
-    }
-
-    private fun listener() {
-        comicsListObserver = {
-            getComicsListState(comicsListViewModel.comics.value)
-        }
-        comicsListViewModel.comics.addObserver(comicsListObserver)
-    }
-
-    private fun getComicsListState(result: Resource<List<ComicShared>>) {
-        when (result.status) {
-            Status.SUCCESS -> {
-                mBinding.progressBar.isVisible = false
-
-                if (result.data.isNullOrEmpty()) {
-                    mBinding.root.showSnackbar("Comic no encontrado")
-                } else {
-                    mBinding.recyclerViewSearch.adapter = ComicAdapter(result.data!!, this)
-                }
-            }
-            Status.LOADING -> {
-                mBinding.progressBar.isVisible = true
-            }
-
-            Status.ERROR -> {
-                mBinding.progressBar.isVisible = false
-            }
+            clickSearch(mBinding.tieSearch.text.toString())
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        comicsListViewModel.comics.removeObserver { comicsListObserver }
-    }
+    abstract fun listener()
 
-    override fun onClick(comic: ComicShared) {
-        mBinding.root.showSnackbar("Comic seleccionado ${comic.title}")
-    }
+    abstract fun <T> getDataListState(result: Resource<List<T>>)
+
+    abstract fun clickSearch(name: String)
 }

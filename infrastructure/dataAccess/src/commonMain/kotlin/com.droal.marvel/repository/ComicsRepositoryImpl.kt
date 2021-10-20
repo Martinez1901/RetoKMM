@@ -16,10 +16,6 @@ class ComicsRepositoryImpl(
         return dbDataSource.getAllComics().map { it.toComic() }
     }
 
-    override suspend fun clearAllCharacters() {
-        dbDataSource.clearAllCharacters()
-    }
-
     override suspend fun clearAllComics() {
         dbDataSource.clearAllComics()
     }

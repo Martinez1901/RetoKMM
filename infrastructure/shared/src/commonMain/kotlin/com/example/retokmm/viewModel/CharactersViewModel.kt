@@ -37,6 +37,7 @@ class CharactersViewModel : ViewModel() {
 
     fun searchCharacter(characterTitle: String){
         viewModelScope.launch {
+            Resource.loading(null, null)
             val response = searchCharacterUseCase.searchCharacter(characterTitle)
             processCharactersListResponse(response)
         }

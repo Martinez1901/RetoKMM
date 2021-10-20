@@ -20,8 +20,11 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
-            android:id="@+id/action_searchFragment_to_searchContentFragment"
-            app:destination="@id/searchContentFragment" />
+            android:id="@+id/action_searchFragment_to_searchCharacterFragment"
+            app:destination="@id/searchCharacterFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_searchComicFragment"
+            app:destination="@id/searchComicFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -56,13 +59,11 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/searchContentFragment"
-        android:name="com.example.retokmm.android.ui.search.SearchContentFragment"
-        android:label="fragment_search_content"
-        tools:layout="@layout/fragment_search_content" >
-        <argument
-            android:name="type"
-            app:argType="string"
-            android:defaultValue="comics" />
-    </fragment>
+        android:id="@+id/searchCharacterFragment"
+        android:name="com.example.retokmm.android.ui.search.SearchCharacterFragment"
+        android:label="SearchCharacterFragment" />
+    <fragment
+        android:id="@+id/searchComicFragment"
+        android:name="com.example.retokmm.android.ui.search.SearchComicFragment"
+        android:label="SearchComicFragment" />
 </navigation>

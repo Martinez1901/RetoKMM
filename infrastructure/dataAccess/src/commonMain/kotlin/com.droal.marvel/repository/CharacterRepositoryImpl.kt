@@ -20,10 +20,6 @@ class CharacterRepositoryImpl (
         dbDataSource.clearAllCharacters()
     }
 
-    override suspend fun clearAllComics() {
-        dbDataSource.clearAllComics()
-    }
-
     override suspend fun insertCharactersInDB(characters: List<CharacterDomain>) {
         dbDataSource.insertCharactersInDB(characters)
     }

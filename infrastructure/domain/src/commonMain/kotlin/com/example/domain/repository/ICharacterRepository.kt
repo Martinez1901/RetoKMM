@@ -9,8 +9,6 @@ interface ICharacterRepository  {
 
     suspend fun clearAllCharacters()
 
-    suspend fun clearAllComics()
-
     suspend fun insertCharactersInDB(characters: List<CharacterDomain>)
 
     suspend fun getAllCharactersFromNetwork(): Response<List<CharacterDomain>>

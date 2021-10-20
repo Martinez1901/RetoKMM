@@ -27,11 +27,11 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         super.onViewCreated(view, savedInstanceState)
         //mBinding.tvSearch.text = greet()
         mBinding.imgComics.setOnClickListener {
-            val action = SearchFragmentDirections.actionSearchFragmentToSearchContentFragment("comics")
+            val action = SearchFragmentDirections.actionSearchFragmentToSearchComicFragment()
             Navigation.findNavController(mBinding.root).navigate(action)
         }
         mBinding.imgCharacter.setOnClickListener {
-            val action = SearchFragmentDirections.actionSearchFragmentToSearchContentFragment("character")
+            val action = SearchFragmentDirections.actionSearchFragmentToSearchCharacterFragment()
             Navigation.findNavController(mBinding.root).navigate(action)
         }
     }

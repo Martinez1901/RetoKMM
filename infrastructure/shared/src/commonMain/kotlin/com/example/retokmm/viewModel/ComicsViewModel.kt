@@ -15,7 +15,7 @@ import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.*
 import org.kodein.di.instance
 
-class ComicsListViewModel : ViewModel() {
+class ComicsViewModel : ViewModel() {
 
     private var _comics =
         MutableLiveData<Resource<List<ComicShared>>>(Resource.loading(null, null))
@@ -34,16 +34,9 @@ class ComicsListViewModel : ViewModel() {
 
     fun searchComics(comicTitle: String) {
         viewModelScope.launch {
-            withContext(Dispatchers.UI) {
-                try {
-                    Resource.loading(null, null)
-                    delay(2000)
-                    val response = searchComicsUseCase.searchComic(comicTitle)
-                    processComicsListResponse(response)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
+            Resource.loading(null, null)
+            val response = searchComicsUseCase.searchComic(comicTitle)
+            processComicsListResponse(response)
         }
     }
 

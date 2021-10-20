@@ -7,8 +7,6 @@ interface IComicsRepository  {
 
     suspend fun getAllComicsFromDB(): List<ComicDomain>
 
-    suspend fun clearAllCharacters()
-
     suspend fun clearAllComics()
 
     suspend fun insertComicInDB(comics: List<ComicDomain>)
