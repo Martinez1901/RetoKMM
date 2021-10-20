@@ -6,4 +6,5 @@ import com.example.utilities.Response
 interface IComicsAPI {
 
     suspend fun getComics(): Response<List<ComicDomain>>
+    suspend fun searchComicsByTitle(comicTitle: String): Response<List<ComicDomain>>
 }

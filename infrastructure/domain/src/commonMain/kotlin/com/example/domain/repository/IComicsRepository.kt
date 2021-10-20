@@ -15,5 +15,7 @@ interface IComicsRepository  {
 
     suspend fun getAllComicsFromNetwork(): Response<List<ComicDomain>>
 
-    suspend fun getComicsByTitle(comicTitle: String): List<ComicDomain>
+    suspend fun getComicsByTitleDB(comicTitle: String): List<ComicDomain>
+
+    suspend fun getComicsByTitleFromNetwork(comicTitle: String): Response<List<ComicDomain>>
 }

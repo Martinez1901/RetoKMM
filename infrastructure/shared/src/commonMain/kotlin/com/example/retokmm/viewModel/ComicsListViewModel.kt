@@ -38,7 +38,7 @@ class ComicsListViewModel : ViewModel() {
                 try {
                     Resource.loading(null, null)
                     delay(2000)
-                    val response = searchComicsUseCase.getAllComicsByTitle(comicTitle)
+                    val response = searchComicsUseCase.searchComic(comicTitle)
                     processComicsListResponse(response)
                 } catch (e: Exception) {
                     e.printStackTrace()

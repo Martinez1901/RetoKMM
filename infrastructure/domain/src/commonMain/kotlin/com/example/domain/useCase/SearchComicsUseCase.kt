@@ -7,8 +7,11 @@ import com.example.utilities.Response
 class SearchComicsUseCase(
     private val repository: IComicsRepository
 ) {
-    suspend fun getAllComicsByTitle(comicTitle: String): Response<List<ComicDomain>> {
-        val comicsDB = repository.getComicsByTitle(comicTitle)
-        return Response.Success(comicsDB)
+    suspend fun searchComic(comicTitle: String): Response<List<ComicDomain>> {
+        val comicsDB = repository.getComicsByTitleDB(comicTitle)
+        return if (comicsDB.isNotEmpty())
+            Response.Success(comicsDB)
+        else
+            repository.getComicsByTitleFromNetwork(comicTitle)
     }
 }

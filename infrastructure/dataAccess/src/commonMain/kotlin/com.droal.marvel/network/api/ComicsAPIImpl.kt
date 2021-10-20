@@ -22,4 +22,15 @@ class ComicsAPIImpl(
         }
     }
 
+    override suspend fun searchComicsByTitle(comicTitle: String): Response<List<ComicDomain>> {
+        val response: ComicDataWrapperDto = comicsEndPoints.searchComicByTitle(comicTitle)
+        val container = response.data
+        val comics = container?.results
+        return if (comics != null) {
+            Response.Success(comics.map { it.toComic()})
+        }else{
+            Response.Success(emptyList())
+        }
+    }
+
 }

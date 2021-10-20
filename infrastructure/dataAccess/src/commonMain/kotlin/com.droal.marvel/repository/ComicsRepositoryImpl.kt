@@ -32,7 +32,11 @@ class ComicsRepositoryImpl(
         return comicsApi.getComics()
     }
 
-    override suspend fun getComicsByTitle(comicTitle: String): List<ComicDomain> {
+    override suspend fun getComicsByTitleDB(comicTitle: String): List<ComicDomain> {
         return dbDataSource.searchComicsByTitle(comicTitle).map { it.toComic() }
+    }
+
+    override suspend fun getComicsByTitleFromNetwork(comicTitle: String): Response<List<ComicDomain>> {
+        return comicsApi.searchComicsByTitle(comicTitle)
     }
 }
