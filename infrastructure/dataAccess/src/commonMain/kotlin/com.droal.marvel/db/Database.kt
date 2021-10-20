@@ -47,6 +47,10 @@ class Database(sqlDriver: SqlDriver) {
         }
     }
 
+    fun searchCharacterByTitle(characterTitle : String) : List<SearchCharacterByTitle> {
+        return dbQuery.searchCharacterByTitle(characterTitle).executeAsList()
+    }
+
     fun getAllComics(): List<SelectAllComics> {
         return dbQuery.selectAllComics().executeAsList()
     }

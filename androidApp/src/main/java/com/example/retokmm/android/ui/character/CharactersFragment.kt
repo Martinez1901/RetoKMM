@@ -19,7 +19,7 @@ import com.google.gson.Gson
 class CharactersFragment : Fragment(), ClickCharacter {
 
     private lateinit var mBinding: FragmentCharactersBinding
-    private lateinit var charactersListViewModel: CharactersListViewModel
+    private lateinit var charactersViewModel: CharactersViewModel
     private lateinit var charactersListObserver: (state: Resource<List<CharacterShared>>) -> Unit
 
 
@@ -33,17 +33,17 @@ class CharactersFragment : Fragment(), ClickCharacter {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        charactersListViewModel = ViewModelProvider(this).get(CharactersListViewModel::class.java)
-        charactersListViewModel.getInformation(false)
+        charactersViewModel = ViewModelProvider(this).get(CharactersViewModel::class.java)
+        charactersViewModel.getInformation(false)
 
         listener()
     }
 
     private fun listener() {
         charactersListObserver = {
-            getCharacterListState(charactersListViewModel.characters.value)
+            getCharacterListState(charactersViewModel.characters.value)
         }
-        charactersListViewModel.characters.addObserver(charactersListObserver)
+        charactersViewModel.characters.addObserver(charactersListObserver)
     }
 
     private fun getCharacterListState(result: Resource<List<CharacterShared>>) {
@@ -67,7 +67,7 @@ class CharactersFragment : Fragment(), ClickCharacter {
 
     override fun onDestroy() {
         super.onDestroy()
-        charactersListViewModel.characters.removeObserver { charactersListObserver }
+        charactersViewModel.characters.removeObserver { charactersListObserver }
     }
 
     override fun onClick(character: CharacterShared) {

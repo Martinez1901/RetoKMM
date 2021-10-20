@@ -2,6 +2,7 @@ package com.droal.marvel.db
 
 import com.example.domain.model.CharacterDomain
 import com.example.domain.model.ComicDomain
+import droal.shareddb.SearchCharacterByTitle
 import droal.shareddb.SearchComicsByTitle
 import droal.shareddb.SelectAllCharacters
 import droal.shareddb.SelectAllComics
@@ -22,6 +23,10 @@ class DatabaseSourceImpl(private val database: Database?) : IDatabaseSource {
 
     override suspend fun getAllCharacters(): List<SelectAllCharacters> {
         return database?.getAllCharacters() ?: emptyList()
+    }
+
+    override suspend fun searchCharacterByTitle(characterTitle: String): List<SearchCharacterByTitle> {
+        return database?.searchCharacterByTitle(characterTitle) ?: emptyList()
     }
 
     override suspend fun insertComicsInDB(comics: List<ComicDomain>) {

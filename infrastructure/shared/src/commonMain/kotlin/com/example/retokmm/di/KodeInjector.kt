@@ -16,6 +16,7 @@ import com.example.domain.repository.ICharacterRepository
 import com.example.domain.repository.IComicsRepository
 import com.example.domain.useCase.GetAllCharactersUseCase
 import com.example.domain.useCase.GetAllComicsUseCase
+import com.example.domain.useCase.SearchCharacterUseCase
 import com.example.domain.useCase.SearchComicsUseCase
 import kotlinx.coroutines.Dispatchers
 import org.kodein.di.*
@@ -63,11 +64,11 @@ val KodeinInjector = DI{
     /**
      * USECASES
      */
-
-    /**
-     * USECASES
-     */
     bind<GetAllCharactersUseCase>() with provider { GetAllCharactersUseCase(instance()) }
+    bind<SearchCharacterUseCase>() with provider { SearchCharacterUseCase(instance()) }
+    /**
+     * USECASES COMICS
+     */
     bind<GetAllComicsUseCase>() with provider { GetAllComicsUseCase(instance()) }
     bind<SearchComicsUseCase>() with provider { SearchComicsUseCase(instance()) }
 }

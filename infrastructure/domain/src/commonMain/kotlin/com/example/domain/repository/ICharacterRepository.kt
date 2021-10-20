@@ -14,4 +14,8 @@ interface ICharacterRepository  {
     suspend fun insertCharactersInDB(characters: List<CharacterDomain>)
 
     suspend fun getAllCharactersFromNetwork(): Response<List<CharacterDomain>>
+
+    suspend fun getCharacterByTitleDB(characterTitle: String): List<CharacterDomain>
+
+    suspend fun getCharacterByTitleFromNetwork(characterTitle: String): Response<List<CharacterDomain>>
 }

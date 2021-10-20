@@ -2,6 +2,7 @@ package com.droal.marvel.repository
 
 import com.droal.marvel.db.IDatabaseSource
 import com.droal.marvel.db.entity.toCharacter
+import com.droal.marvel.db.entity.toComic
 import com.droal.marvel.network.api.ICharacterAPI
 import com.example.domain.model.CharacterDomain
 import com.example.domain.repository.ICharacterRepository
@@ -30,5 +31,13 @@ class CharacterRepositoryImpl (
 
     override suspend fun getAllCharactersFromNetwork(): Response<List<CharacterDomain>> {
        return characterApi.getCharacters()
+    }
+
+    override suspend fun getCharacterByTitleDB(characterTitle: String): List<CharacterDomain> {
+        return dbDataSource.searchCharacterByTitle(characterTitle).map { it.toCharacter() }
+    }
+
+    override suspend fun getCharacterByTitleFromNetwork(characterTitle: String): Response<List<CharacterDomain>> {
+        TODO("Not yet implemented")
     }
 }

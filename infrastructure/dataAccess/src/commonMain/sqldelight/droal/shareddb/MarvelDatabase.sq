@@ -47,6 +47,12 @@ selectCharacterById:
 SELECT * FROM Character_Entity
 WHERE id = ?;
 
+searchCharacterByTitle:
+SELECT Character_Entity.*, Thumbnail_Entity.*
+FROM Character_Entity
+INNER JOIN Thumbnail_Entity ON Thumbnail_Entity.idThumb == Character_Entity.thumbnailId
+WHERE Character_Entity.name LIKE '%' || ? || '%';
+
 -- Comics --
 insertComic:
 INSERT INTO Comic_Entity(id, digitalId, title, description, modified, resourceURI, thumbnailId)
