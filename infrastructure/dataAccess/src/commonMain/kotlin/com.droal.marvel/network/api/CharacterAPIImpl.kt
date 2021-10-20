@@ -22,4 +22,15 @@ class CharacterAPIImpl(
         }
     }
 
+    override suspend fun searchCharacterByTitle(characterTitle: String): Response<List<CharacterDomain>> {
+        val response: CharacterDataWrapperDto = characterEndPoints.searchCharacterByTitle(characterTitle)
+        val container = response.data
+        val characters = container?.results
+        return if (characters != null) {
+            Response.Success(characters.map{it.toCharacter()})
+        }else{
+            Response.Success(emptyList())
+        }
+    }
+
 }
