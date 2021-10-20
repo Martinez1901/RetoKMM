@@ -26,7 +26,7 @@ class ComicsViewModel : ViewModel() {
 
     fun getInformation(updateData: Boolean) {
         viewModelScope.launch {
-            Resource.loading(null, null)
+            _comics.postValue(Resource.loading(null, null))
             val response = getAllComicsUseCase.getAllComics(updateData)
             processComicsListResponse(response)
         }
@@ -34,7 +34,7 @@ class ComicsViewModel : ViewModel() {
 
     fun searchComics(comicTitle: String) {
         viewModelScope.launch {
-            Resource.loading(null, null)
+            _comics.postValue(Resource.loading(null, null))
             val response = searchComicsUseCase.searchComic(comicTitle)
             processComicsListResponse(response)
         }

@@ -23,10 +23,12 @@ class SearchCharacterFragment : SearchContentFragment(), ClickCharacter {
 
     private lateinit var charactersViewModel: CharactersViewModel
     private lateinit var charactersObserver: (state: Resource<List<CharacterShared>>) -> Unit
+    private val adapter = CharactersAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.recyclerViewSearch.layoutManager = LinearLayoutManager(context)
+        mBinding.recyclerViewSearch.adapter = adapter
         charactersViewModel = ViewModelProvider(this).get(CharactersViewModel::class.java)
         listener()
         mBinding.progressBar.isVisible = false
@@ -43,6 +45,7 @@ class SearchCharacterFragment : SearchContentFragment(), ClickCharacter {
         if (name.isEmpty()) {
             mBinding.root.showSnackbar("Favor ingresa el nombre de un character.")
         } else {
+            adapter.submitList(emptyList())
             charactersViewModel.searchCharacter(name)
         }
     }
@@ -52,19 +55,16 @@ class SearchCharacterFragment : SearchContentFragment(), ClickCharacter {
             Status.SUCCESS -> {
                 mBinding.progressBar.isVisible = false
                 if (result.data.isNullOrEmpty()) {
-                    mBinding.recyclerViewSearch.adapter =
-                        CharactersAdapter(emptyList(), this@SearchCharacterFragment)
                     mBinding.root.showSnackbar("Character no encontrado")
                 } else {
                     result.data!!.filterIsInstance<CharacterShared>().apply {
-                        mBinding.recyclerViewSearch.adapter =
-                            CharactersAdapter(this, this@SearchCharacterFragment)
+                        adapter.submitList(this)
                     }
                 }
 
             }
             Status.LOADING -> {
-                //  mBinding.progressBar.isVisible = true
+                mBinding.progressBar.isVisible = true
             }
 
             Status.ERROR -> {

@@ -19,10 +19,12 @@ class SearchComicFragment : SearchContentFragment(), ClickComic {
 
     private lateinit var comicsViewModel: ComicsViewModel
     private lateinit var comicsObserver: (state: Resource<List<ComicShared>>) -> Unit
+    private val adapter = ComicAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mBinding.recyclerViewSearch.layoutManager = GridLayoutManager(context, 2)
+        mBinding.recyclerViewSearch.adapter = adapter
         comicsViewModel = ViewModelProvider(this).get(ComicsViewModel::class.java)
         listener()
         mBinding.progressBar.isVisible = false
@@ -39,6 +41,7 @@ class SearchComicFragment : SearchContentFragment(), ClickComic {
         if (name.isEmpty()) {
             mBinding.root.showSnackbar("Favor ingresa el nombre de un comic.")
         } else {
+            adapter.submitList(emptyList())
             comicsViewModel.searchComics(name)
         }
     }
@@ -48,18 +51,16 @@ class SearchComicFragment : SearchContentFragment(), ClickComic {
             Status.SUCCESS -> {
                 mBinding.progressBar.isVisible = false
                 if (result.data.isNullOrEmpty()) {
-                    mBinding.recyclerViewSearch.adapter =
-                        ComicAdapter(emptyList(), this@SearchComicFragment)
                     mBinding.root.showSnackbar("Comic no encontrado")
                 } else {
                     result.data!!.filterIsInstance<ComicShared>().apply {
-                        mBinding.recyclerViewSearch.adapter =
-                            ComicAdapter(this, this@SearchComicFragment)
+                        adapter.submitList(this)
                     }
                 }
 
             }
             Status.LOADING -> {
+                println("entroooooooo")
                 mBinding.progressBar.isVisible = true
             }
 

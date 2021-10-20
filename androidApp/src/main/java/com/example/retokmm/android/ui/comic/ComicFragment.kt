@@ -1,15 +1,15 @@
 package com.example.retokmm.android.ui.comic
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.example.retokmm.android.databinding.FragmentComicBinding
 import com.example.retokmm.android.core.showSnackbar
+import com.example.retokmm.android.databinding.FragmentComicBinding
 import com.example.retokmm.model.ComicShared
 import com.example.retokmm.util.Resource
 import com.example.retokmm.util.Status
@@ -21,6 +21,7 @@ class ComicFragment : Fragment(), ClickComic {
     private lateinit var mBinding: FragmentComicBinding
     private lateinit var comicsViewModel: ComicsViewModel
     private lateinit var comicsObserver: (state: Resource<List<ComicShared>>) -> Unit
+    private val adapter = ComicAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +33,7 @@ class ComicFragment : Fragment(), ClickComic {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mBinding.recyclerViewComic.adapter = adapter
         comicsViewModel = ViewModelProvider(this).get(ComicsViewModel::class.java)
         comicsViewModel.getInformation(false)
 
@@ -50,7 +52,7 @@ class ComicFragment : Fragment(), ClickComic {
             Status.SUCCESS -> {
                 mBinding.progressBar.isVisible = false
                 result.data?.let {
-                    mBinding.recyclerViewComic.adapter = ComicAdapter(it, this)
+                    adapter.submitList(it)
                 }
             }
             Status.LOADING -> {

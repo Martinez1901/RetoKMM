@@ -29,15 +29,15 @@ class CharactersViewModel : ViewModel() {
 
     fun getInformation(updateData: Boolean) {
         viewModelScope.launch {
-            Resource.loading(null, null)
+            _characters.postValue(Resource.loading(null, null))
             val response = getAllCharactersUseCase.getAllCharacters(updateData)
             processCharactersListResponse(response)
         }
     }
 
-    fun searchCharacter(characterTitle: String){
+    fun searchCharacter(characterTitle: String) {
         viewModelScope.launch {
-            Resource.loading(null, null)
+            _characters.postValue(Resource.loading(null, null))
             val response = searchCharacterUseCase.searchCharacter(characterTitle)
             processCharactersListResponse(response)
         }

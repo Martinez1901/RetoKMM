@@ -22,7 +22,7 @@ class CharactersFragment : Fragment(), ClickCharacter {
     private lateinit var mBinding: FragmentCharactersBinding
     private lateinit var charactersViewModel: CharactersViewModel
     private lateinit var charactersListObserver: (state: Resource<List<CharacterShared>>) -> Unit
-
+    private val adapter = CharactersAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,9 +34,9 @@ class CharactersFragment : Fragment(), ClickCharacter {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mBinding.recyclerViewCharacters.adapter = adapter
         charactersViewModel = ViewModelProvider(this).get(CharactersViewModel::class.java)
         charactersViewModel.getInformation(false)
-
         listener()
     }
 
@@ -52,7 +52,7 @@ class CharactersFragment : Fragment(), ClickCharacter {
             Status.SUCCESS -> {
                 mBinding.progressBar.isVisible = false
                 result.data?.let {
-                    mBinding.recyclerViewCharacters.adapter = CharactersAdapter(it, this)
+                    adapter.submitList(it)
                 }
             }
 
@@ -76,7 +76,8 @@ class CharactersFragment : Fragment(), ClickCharacter {
 
         val stringModel = Gson().toJson(character)
 
-        val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterInfoFragment(stringModel)
+        val action =
+            CharactersFragmentDirections.actionCharactersFragmentToCharacterInfoFragment(stringModel)
         Navigation.findNavController(mBinding.root).navigate(action)
     }
 
