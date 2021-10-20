@@ -31,7 +31,8 @@ fun ComicDomain.fromDomainToView(): ComicShared =
         description = this.description ?: "",
         modified = this.modified ?: "",
         resourceURI = this.resourceURI ?: "",
-        thumbnailPath = this.thumbnailPath
+        thumbnailPath = this.thumbnailPath,
+        pageCount = this.pageCount
     )
 
 fun List<ComicDomain>.fromListDomainComicToListView(): List<ComicShared> =

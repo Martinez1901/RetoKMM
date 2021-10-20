@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.retokmm.android.core.showSnackbar
 import com.example.retokmm.android.databinding.FragmentCharactersBinding
 import com.example.retokmm.model.CharacterShared
@@ -72,12 +73,11 @@ class CharactersFragment : Fragment(), ClickCharacter {
 
     override fun onClick(character: CharacterShared) {
         mBinding.root.showSnackbar("Personaje ${character.name} seleccionado")
-        val id = character.id
 
         val stringModel = Gson().toJson(character)
 
-        /*val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterInfoFragment(character)
-        Navigation.findNavController(mBinding.root).navigate(action)*/
+        val action = CharactersFragmentDirections.actionCharactersFragmentToCharacterInfoFragment(stringModel)
+        Navigation.findNavController(mBinding.root).navigate(action)
     }
 
 }

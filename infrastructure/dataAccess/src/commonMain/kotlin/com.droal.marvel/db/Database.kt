@@ -10,14 +10,14 @@ class Database(sqlDriver: SqlDriver) {
     private val database = MarvelDatabase(sqlDriver)
     private val dbQuery = database.marvelDatabaseQueries
 
-    fun clearAllCharacters(){
+    fun clearAllCharacters() {
         dbQuery.transaction {
             dbQuery.removeAllThumbnailCharacters()
             dbQuery.removeAllCharacters()
         }
     }
 
-    fun clearAllComics(){
+    fun clearAllComics() {
         dbQuery.transaction {
             dbQuery.removeAllThumbnailComics()
             dbQuery.removeAllComics()
@@ -65,7 +65,8 @@ class Database(sqlDriver: SqlDriver) {
                     description = comic.description,
                     modified = comic.modified,
                     resourceURI = comic.resourceURI,
-                    thumbnailId = comic.id.toString()
+                    thumbnailId = comic.id.toString(),
+                    pageCount = comic.pageCount.toLong()
                 )
                 dbQuery.insertThumbnail(
                     idThumb = comic.id.toString(),

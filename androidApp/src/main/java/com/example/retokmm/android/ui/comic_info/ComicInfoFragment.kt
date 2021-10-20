@@ -9,17 +9,20 @@ import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import coil.load
 import com.example.retokmm.android.R
 import com.example.retokmm.android.core.toUpper
 import com.example.retokmm.android.databinding.FragmentComicInfoBinding
 import com.example.retokmm.model.ComicShared
+import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
 import java.util.ArrayList
 
 
 class ComicInfoFragment : Fragment() {
 
     private lateinit var mBinding: FragmentComicInfoBinding
-    //private val args: ComicInfoFragmentArgs by navArgs()
+    private val args: ComicInfoFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,24 +36,25 @@ class ComicInfoFragment : Fragment() {
             getString(R.string.Creators).toUpper()
         )
 
-        /*with(args.character!!) {
-            mBinding.imgToolbarComic.load("${thumbnailPath}/standard_fantastic.jpg")
-            mBinding.tvNameComic.text = name
+        with(args.comic) {
+            val comic = Gson().fromJson(this, ComicShared::class.java)
+            mBinding.imgToolbarComic.load(comic.thumbnailPath)
+            mBinding.tvNameComic.text = comic.title
 
-            setupViewPager(mBinding.viewPager, this)
+            setupViewPager(mBinding.viewPager, comic)
             TabLayoutMediator(mBinding.tabLayout, mBinding.viewPager) { tab, position ->
                 tab.text = listTitlesTabs[position]
             }.attach()
-        }*/
+        }
 
         return mBinding.root
     }
 
-    /*private fun setupViewPager(viewPager: ViewPager2, character: ComicShared) {
+    private fun setupViewPager(viewPager: ViewPager2, comic: ComicShared) {
         val adapter = SectionsPagerAdapter(requireActivity())
-        adapter.addFragment(ComicDetailsFragment.newInstance(character.description), "DETAILS")
+        adapter.addFragment(ComicDetailsFragment.newInstance(comic.description), "DETAILS")
         adapter.addFragment(ComicCharactersFragment.newInstance("HOME", "HOME"), "CHARACTERS")
-        adapter.addFragment(ComicCreatorFragment.newInstance("HOME", "HOME"), "CREATOR")
+        adapter.addFragment(ComicCreatorFragment.newInstance(Gson().toJson(comic)), "MORE INFO")
         viewPager.adapter = adapter
     }
 
@@ -69,7 +73,7 @@ class ComicInfoFragment : Fragment() {
             mFragmentList.add(fragment)
             mFragmentTitleList.add(title)
         }
-    }*/
+    }
 
 
 }

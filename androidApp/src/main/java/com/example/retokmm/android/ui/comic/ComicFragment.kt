@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.example.retokmm.android.databinding.FragmentComicBinding
 import com.example.retokmm.android.core.showSnackbar
+import com.example.retokmm.android.ui.character.CharactersFragmentDirections
 import com.example.retokmm.model.ComicShared
 import com.example.retokmm.util.Resource
 import com.example.retokmm.util.Status
 import com.example.retokmm.viewModel.ComicsListViewModel
+import com.google.gson.Gson
 
 class ComicFragment : Fragment(), ClickComic {
 
@@ -69,5 +72,10 @@ class ComicFragment : Fragment(), ClickComic {
 
     override fun onClick(comic: ComicShared) {
         mBinding.root.showSnackbar("Comic seleccionado ${comic.title}")
+
+        val stringModel = Gson().toJson(comic)
+
+        val action = ComicFragmentDirections.actionComicFragmentToComicInfoFragment(stringModel)
+        Navigation.findNavController(mBinding.root).navigate(action)
     }
 }

@@ -42,12 +42,19 @@
         android:name="com.example.retokmm.android.ui.comic_info.ComicInfoFragment"
         android:label="fragment_comic_info"
         tools:layout="@layout/fragment_comic_info" >
+        <argument
+            android:name="comic"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/characterInfoFragment"
         android:name="com.example.retokmm.android.ui.character_info.CharacterInfoFragment"
         android:label="fragment_character_info"
-        tools:layout="@layout/fragment_character_info" />
+        tools:layout="@layout/fragment_character_info" >
+        <argument
+            android:name="character"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/searchContentFragment"
         android:name="com.example.retokmm.android.ui.search.SearchContentFragment"

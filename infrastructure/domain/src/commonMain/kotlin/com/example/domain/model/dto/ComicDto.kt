@@ -13,7 +13,8 @@ data class ComicDto(
     val description: String?,
     val modified: String?,
     val resourceURI: String?,
-    val thumbnail: ThumbnailDto
+    val thumbnail: ThumbnailDto,
+    val pageCount: Int
 )
 
 fun ComicDto.toComic(): ComicDomain {
@@ -25,6 +26,7 @@ fun ComicDto.toComic(): ComicDomain {
         description = description,
         resourceURI = resourceURI?.https(),
         //Acá se construye el path de la miniatura
-        thumbnailPath = thumbnail.path.https() + "." + thumbnail.extension
+        thumbnailPath = thumbnail.path.https() + "." + thumbnail.extension,
+        pageCount = pageCount
     )
 }

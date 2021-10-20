@@ -4,7 +4,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.CircleCropTransformation
 import com.example.retokmm.android.R
 import com.example.retokmm.android.databinding.ItemComicBinding
 import com.example.retokmm.android.core.inflate
@@ -35,7 +34,6 @@ class ComicAdapter(var list: List<ComicShared>, val clickComic: ClickComic): Rec
             binding.imgComic.load(comic.thumbnailPath) {
                 crossfade(true)
                 placeholder(R.drawable.ic_image)
-                transformations(CircleCropTransformation())
             }
 
             binding.tvComics.text = comic.title

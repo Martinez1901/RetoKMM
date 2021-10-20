@@ -25,6 +25,7 @@ data class CharacterDto(
     val series: String = "",
 )
 
+// Conversion de la respuesta a objeto CharacterDomain
 fun CharacterDto.toCharacter(): CharacterDomain {
     return CharacterDomain(
         id = id,

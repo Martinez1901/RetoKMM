@@ -12,7 +12,8 @@ fun SelectAllComics.toComic(): ComicDomain {
         description = description,
         modified = modified,
         resourceURI = resourceURI,
-        thumbnailPath = path
+        thumbnailPath = path,
+        pageCount = 0
     )
 }
 
@@ -24,7 +25,8 @@ fun SearchComicsByTitle.toComic(): ComicDomain {
         description = description,
         modified = modified,
         resourceURI = resourceURI,
-        thumbnailPath = path
+        thumbnailPath = path,
+        pageCount = 0
     )
 }
 
