@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retokmm.android.core.showSnackbar
 import com.example.retokmm.android.ui.character.CharactersAdapter
+import com.example.retokmm.android.ui.character.CharactersFragmentDirections
 import com.example.retokmm.android.ui.character.ClickCharacter
 import com.example.retokmm.android.ui.comic.ComicAdapter
 import com.example.retokmm.model.CharacterShared
@@ -17,6 +19,7 @@ import com.example.retokmm.util.Resource
 import com.example.retokmm.util.Status
 import com.example.retokmm.viewModel.CharactersViewModel
 import com.example.retokmm.viewModel.ComicsViewModel
+import com.google.gson.Gson
 
 
 class SearchCharacterFragment : SearchContentFragment(), ClickCharacter {
@@ -79,6 +82,8 @@ class SearchCharacterFragment : SearchContentFragment(), ClickCharacter {
     }
 
     override fun onClick(character: CharacterShared) {
-        mBinding.root.showSnackbar("Character seleccionado ${character.name}")
+        val stringModel = Gson().toJson(character)
+        val action = SearchCharacterFragmentDirections.actionSearchCharacterFragmentToCharacterInfoFragment(stringModel)
+        Navigation.findNavController(mBinding.root).navigate(action)
     }
 }

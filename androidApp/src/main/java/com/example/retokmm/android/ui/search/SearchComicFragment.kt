@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retokmm.android.core.showSnackbar
 import com.example.retokmm.android.ui.comic.ClickComic
 import com.example.retokmm.android.ui.comic.ComicAdapter
+import com.example.retokmm.android.ui.comic.ComicFragmentDirections
 import com.example.retokmm.model.ComicShared
 import com.example.retokmm.util.Resource
 import com.example.retokmm.util.Status
 import com.example.retokmm.viewModel.ComicsViewModel
+import com.google.gson.Gson
 
 
 class SearchComicFragment : SearchContentFragment(), ClickComic {
@@ -76,6 +79,8 @@ class SearchComicFragment : SearchContentFragment(), ClickComic {
     }
 
     override fun onClick(comic: ComicShared) {
-        mBinding.root.showSnackbar("Comic seleccionado ${comic.title}")
+        val stringModel = Gson().toJson(comic)
+        val action = SearchComicFragmentDirections.actionSearchComicFragmentToComicInfoFragment(stringModel)
+        Navigation.findNavController(mBinding.root).navigate(action)
     }
 }

@@ -61,9 +61,17 @@
     <fragment
         android:id="@+id/searchCharacterFragment"
         android:name="com.example.retokmm.android.ui.search.SearchCharacterFragment"
-        android:label="SearchCharacterFragment" />
+        android:label="SearchCharacterFragment" >
+        <action
+            android:id="@+id/action_searchCharacterFragment_to_characterInfoFragment"
+            app:destination="@id/characterInfoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchComicFragment"
         android:name="com.example.retokmm.android.ui.search.SearchComicFragment"
-        android:label="SearchComicFragment" />
+        android:label="SearchComicFragment" >
+        <action
+            android:id="@+id/action_searchComicFragment_to_comicInfoFragment"
+            app:destination="@id/comicInfoFragment" />
+    </fragment>
 </navigation>
