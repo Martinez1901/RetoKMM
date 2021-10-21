@@ -32,7 +32,7 @@ class CharacterInfoFragment : Fragment() {
 
         val listTitlesTabs = listOf(
             getString(R.string.details).toUpper(),
-            getString(R.string.comics).toUpper(),
+            //getString(R.string.comics).toUpper(),
         )
 
         with(args.character) {
@@ -52,7 +52,7 @@ class CharacterInfoFragment : Fragment() {
     private fun setupViewPager(viewPager: ViewPager2, character: CharacterShared) {
         val adapter = SectionsPagerAdapter(requireActivity())
         adapter.addFragment(CharacterDetailsFragment.newInstance(character.description), getString(R.string.details))
-        adapter.addFragment(CharacterComicsFragment.newInstance("HOME", "HOME"), getString(R.string.comics))
+        //adapter.addFragment(CharacterComicsFragment.newInstance("HOME", "HOME"), getString(R.string.comics))
         viewPager.adapter = adapter
     }
 
