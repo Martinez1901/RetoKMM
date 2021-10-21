@@ -7,8 +7,9 @@
     <string name="account">Account</string>
     <string name="characters">Characters</string>
     <string name="comics">Comics</string>
-    <string name="details">details</string>
+    <string name="details">Description</string>
     <string name="Creators">creators</string>
 
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="not_description">Description not found</string>
 </resources>
