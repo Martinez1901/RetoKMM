@@ -42,7 +42,7 @@ class SearchComicFragment : SearchContentFragment(), ClickComic {
 
     override fun clickSearch(name: String) {
         if (name.isEmpty()) {
-            mBinding.root.showSnackbar("Favor ingresa el nombre de un comic.")
+            mBinding.root.showSnackbar("enter the name of a comic.")
         } else {
             adapter.submitList(emptyList())
             comicsViewModel.searchComics(name)
@@ -54,7 +54,7 @@ class SearchComicFragment : SearchContentFragment(), ClickComic {
             Status.SUCCESS -> {
                 mBinding.progressBar.isVisible = false
                 if (result.data.isNullOrEmpty()) {
-                    mBinding.root.showSnackbar("Comic no encontrado")
+                    mBinding.root.showSnackbar("Comic not found")
                 } else {
                     result.data!!.filterIsInstance<ComicShared>().apply {
                         adapter.submitList(this)
@@ -63,7 +63,6 @@ class SearchComicFragment : SearchContentFragment(), ClickComic {
 
             }
             Status.LOADING -> {
-                println("entroooooooo")
                 mBinding.progressBar.isVisible = true
             }
 

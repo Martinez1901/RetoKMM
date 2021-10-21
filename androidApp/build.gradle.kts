@@ -27,7 +27,7 @@ dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     // Image Loading library Coil
-    implementation("io.coil-kt:coil:1.3.2")
+    implementation("io.coil-kt:coil:1.4.0")
     implementation("com.google.code.gson:gson:2.8.8")
 }
 

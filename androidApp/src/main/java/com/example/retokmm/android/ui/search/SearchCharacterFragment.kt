@@ -46,7 +46,7 @@ class SearchCharacterFragment : SearchContentFragment(), ClickCharacter {
 
     override fun clickSearch(name: String) {
         if (name.isEmpty()) {
-            mBinding.root.showSnackbar("Favor ingresa el nombre de un character.")
+            mBinding.root.showSnackbar("enter the name of a character.")
         } else {
             adapter.submitList(emptyList())
             charactersViewModel.searchCharacter(name)
@@ -58,7 +58,7 @@ class SearchCharacterFragment : SearchContentFragment(), ClickCharacter {
             Status.SUCCESS -> {
                 mBinding.progressBar.isVisible = false
                 if (result.data.isNullOrEmpty()) {
-                    mBinding.root.showSnackbar("Character no encontrado")
+                    mBinding.root.showSnackbar("Character not found")
                 } else {
                     result.data!!.filterIsInstance<CharacterShared>().apply {
                         adapter.submitList(this)

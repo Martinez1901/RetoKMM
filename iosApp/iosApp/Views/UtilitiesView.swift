@@ -22,12 +22,27 @@ struct TextEmptyView:View {
     }
 }
 
-struct Title:View {
-    let title : String
+struct TextFielSearch : View {
+    @Binding var searchText : String
+    @Binding var msgToast : String
+    @Binding var showToast : Bool
+    let action:()->Void
     var body: some View {
-        Text(title)
-            .fontWeight(.bold)
-            .font(.system(size: 20))
-            .frame(minWidth: .zero, maxWidth: .infinity, alignment: .leading)
+        TextField("Search",text: $searchText)
+            .padding(.bottom)
+        Button(action: { 
+            if (searchText.isEmpty) {
+                msgToast = "Enter the name of a comic."
+                showToast.toggle()
+            } else {
+                action()
+            }
+        }){
+           Text("Search")
+                .padding()
+                .frame(minWidth: .zero, maxWidth: .infinity, minHeight: .zero, maxHeight: 40)
+                .background(Color.black)
+                .foregroundColor(.white).cornerRadius(10)
+        }
     }
 }
