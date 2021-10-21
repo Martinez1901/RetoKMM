@@ -33,7 +33,10 @@ class ComicDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mBinding.tvDetails.text = detail
+        if (detail.isNullOrBlank())
+            mBinding.tvDetails.text= getString(R.string.not_description)
+        else
+            mBinding.tvDetails.text = detail
     }
 
     companion object {

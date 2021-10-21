@@ -6,6 +6,7 @@
     <string name="app_name">Reto KMM</string>
     <string name="characters">Personajes</string>
     <string name="comics">Comics</string>
-    <string name="details">detalles</string>
+    <string name="details">Descripción</string>
     <string name="Creators">creadores</string>
+    <string name="not_description">Descripción no encontrada</string>
 </resources>
