@@ -22,7 +22,7 @@ struct DetailCharacterView: View {
                     .frame(minWidth: .zero, maxWidth: .infinity, alignment: .leading)
                     .padding(.top)
                     .padding(.leading)
-                Text(!character.description.isEmpty ? character.description : "Description not found")
+                Text(!character.description_.isEmpty ? character.description_ : "Description not found")
                     .font(.body)
                     .padding()
             }

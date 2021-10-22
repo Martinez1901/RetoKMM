@@ -22,7 +22,7 @@ struct DetailComicView: View {
                     .frame(minWidth: .zero, maxWidth: .infinity, alignment: .leading)
                     .padding(.top)
                     .padding(.leading)
-                Text(!comic.description.isEmpty ? comic.description : "Description not found")
+                Text(!comic.description_.isEmpty ? comic.description_ : "Description not found")
                     .font(.body)
                     .padding()
             }
