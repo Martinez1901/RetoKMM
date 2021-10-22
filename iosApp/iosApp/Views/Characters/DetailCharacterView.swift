@@ -14,7 +14,7 @@ struct DetailCharacterView: View {
                     .bold()
                     .padding()
                     .frame(minWidth: .zero, maxWidth: .infinity, minHeight: .zero, maxHeight: .infinity)
-                    .background(Color.black)
+                    .background(Color("colorAccent"))
                     .foregroundColor(.white)
                 
                 Text("Description")
